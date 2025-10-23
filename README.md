@@ -46,7 +46,7 @@ The app is built with responsive design using Tailwind CSS breakpoints:
 
 ## 🙏 Acknowledgments
 
-- Built with [Rocket.new](www.arthushon@gmail.com)
+- Developer is [Arthur-Creations](www.arthushon@gmail.com)
 - Powered by HTML and Tailwind CSS
 
 Built by Arthur Creations
