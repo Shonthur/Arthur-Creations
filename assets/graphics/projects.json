@@ -8,7 +8,7 @@
       "tools": [],
       "description": "",
       "order": 0,
-      "pdf": "flyer.pdf",
+      "pdf": null,
       "pages": [
         {
           "full": "p01.webp",
@@ -34,7 +34,7 @@
       ],
       "description": "Well designed and branded brochure",
       "order": 0,
-      "pdf": "my-brocure.pdf",
+      "pdf": null,
       "pages": [
         {
           "full": "p01.webp",
