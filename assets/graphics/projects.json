@@ -21,6 +21,39 @@
       "hash": "de87d336fc841861",
       "build": 2,
       "added": "2026-11-14"
+    },
+    {
+      "slug": "my-brocure",
+      "title": "Epic Foods Brochure",
+      "category": "Brochures",
+      "year": "",
+      "tools": [
+        "Adobe InDesign",
+        "Adobe Illustrator",
+        "Adobe Photoshop"
+      ],
+      "description": "Well designed and branded brochure",
+      "order": 0,
+      "pdf": "my-brocure.pdf",
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 2600,
+          "h": 2010,
+          "color": "#b39b5c"
+        },
+        {
+          "full": "p02.webp",
+          "thumb": "t02.webp",
+          "w": 2600,
+          "h": 2010,
+          "color": "#ad9f67"
+        }
+      ],
+      "hash": "bc1c9be234834845",
+      "build": 2,
+      "added": "2026-11-14"
     }
   ]
 }
