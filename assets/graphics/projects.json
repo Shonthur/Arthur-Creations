@@ -1,6 +1,32 @@
 {
   "projects": [
     {
+      "slug": "final-flier",
+      "title": "Herman Properties Flyer",
+      "category": "Flyers",
+      "year": "2026",
+      "tools": [
+        "Adobe Illustrator",
+        "Adobe Photoshop"
+      ],
+      "description": "Flyer for a real estate company",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 1832,
+          "h": 2600,
+          "color": "#162061"
+        }
+      ],
+      "hash": "mwgyayxt",
+      "build": 0,
+      "added": "2026-11-14",
+      "source": "browser"
+    },
+    {
       "slug": "epic-food-hub-letterhead-improved",
       "title": "Epic Foods Letterhead",
       "category": "Design",
