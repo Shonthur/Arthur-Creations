@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>King@rtyqueen.ug</title>
+    <title>Arthur Creations</title>
+    <meta name="description" content="Arthur Creations - web development and graphic design. Powered by vision, crafted for the future." />
+    <meta name="theme-color" content="#1a365d" />
+    <link rel="icon" href="public/favicon.ico" />
+    <noscript><meta http-equiv="refresh" content="0; url=pages/homepage.html" /></noscript>
     <link rel="stylesheet" href="css/main.css" />
     <style>
         body {
@@ -79,7 +83,24 @@
             animation: fadeInUp 1s ease-out 2s forwards;
         }
     </style>
-<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fwebcraftp8684back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <style>
+        .skip-btn {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1.2s forwards;
+            transition: background 0.2s;
+        }
+        .skip-btn:hover { background: rgba(255, 255, 255, 0.28); }
+    </style>
 </head>
 <body>
     <div class="loading-container">
@@ -117,22 +138,21 @@
         <div class="spinner"></div>
         <div class="redirect-message">Redirecting to page...</div>
     </div>
+    <a class="skip-btn" href="pages/homepage.html">Enter site</a>
 
     <script>
-        // Redirect to homepage after 3 seconds
-        setTimeout(function() {
-            window.location.href = 'pages/about_process.html';
-        }, 8000);
-        
-        // Fallback redirect on any user interaction
-        document.addEventListener('click', function() {
-            window.location.href = 'pages/about_process.html';
-        });
-        
-        document.addEventListener('keypress', function() {
-            window.location.href = 'pages/about_process.html';
-        });
+        // Go to the homepage after 4.5 seconds, or sooner if the visitor clicks or presses a key.
+        // location.replace keeps this splash screen out of the Back button history.
+        var HOME = 'pages/homepage.html';
+        var gone = false;
+        function enter() {
+            if (gone) return;
+            gone = true;
+            window.location.replace(HOME);
+        }
+        setTimeout(enter, 4500);
+        document.addEventListener('click', enter);
+        document.addEventListener('keydown', enter);
     </script>
-<script id="dhws-dataInjector" src="/public/dhws-data-injector.js"></script>
 </body>
 </html>

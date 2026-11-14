@@ -1,56 +1,61 @@
-<<<<<<< HEAD
-# HTML
+# Arthur Creations
 
-A modern HTML project utilizing Tailwind CSS for building responsive web applications with minimal setup.
+Portfolio website for Arthur Creations: web development, graphic design and video work.
+Built with plain HTML, Tailwind CSS and a little JavaScript. Hosted on GitHub Pages.
 
-##  Features
+## Pages
 
-- **HTML5** - Modern HTML structure with best practices
-- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
-- **Custom Components** - Pre-built component classes for buttons and containers
-- **NPM Scripts** - Easy-to-use commands for development and building
-- **Responsive Design** - Mobile-first approach for all screen sizes
+| Page | File |
+| --- | --- |
+| Splash screen (opens first) | `index.html` |
+| Home | `pages/homepage.html` |
+| Web portfolio | `pages/portfolio_gallery.html` |
+| **Graphics portfolio** | `pages/graphics.html` |
+| Services and pricing | `pages/services_pricing.html` |
+| Video showcase | `pages/video_showcase_theater.html` |
+| About | `pages/about_process.html` |
+| Success stories | `pages/client_success_hub.html` |
 
-##  Prerequisites
+## Adding graphics (PDF to gallery)
 
-- Node.js (v12.x or higher)
-- npm or yarn
+1. Export your design from Illustrator (or any app) as a **PDF**. Each page of the PDF becomes one image in the gallery.
+2. Put the PDF in the `graphics-src/` folder.
+   - On GitHub: open the folder, then **Add file > Upload files**, drop the PDF and commit.
+3. Wait about a minute. A GitHub Action (`.github/workflows/build-graphics.yml`) turns every page into HD images and saves them in `assets/graphics/`.
+4. Refresh `pages/graphics.html`. The new project is there.
 
-## 📁 Project Structure
+Optional: add a settings file with the **same name** as the PDF to set the title, category and more.
+See `graphics-src/README.md` for the details.
+
+To build on your own computer instead:
+
+```bash
+# needs poppler (pdftoppm) and Pillow
+python scripts/build_graphics.py
+```
+
+## Editing styles (Tailwind)
+
+The main pages use compiled Tailwind CSS in `css/main.css`.
+
+```bash
+npm install
+npm run build:css
+```
+
+The Graphics page has its own small stylesheet, `css/graphics.css`, and script, `js/graphics.js`. They do not need a build step.
+
+## Project structure
 
 ```
-html_app/
-├── css/
-│   ├── tailwind.css   # Tailwind source file with custom utilities
-│   └── main.css       # Compiled CSS (generated)
-├── pages/             # HTML pages
-├── index.html         # Main entry point
-├── package.json       # Project dependencies and scripts
-└── tailwind.config.js # Tailwind CSS configuration
+.github/workflows/    build-graphics.yml  (turns PDFs into gallery images)
+assets/graphics/      generated images and projects.json (do not edit by hand)
+css/                  main.css (compiled Tailwind), tailwind.css, graphics.css
+graphics-src/         put your PDFs here
+js/                   graphics.js (gallery and viewer)
+pages/                all site pages and media
+scripts/              build_graphics.py
+index.html            splash screen
 ```
 
-##  Styling
-
-This project uses Tailwind CSS for styling.
-
-
-## 📱 Responsive Design
-
-The app is built with responsive design using Tailwind CSS breakpoints:
-
-- `sm`: 640px and up
-- `md`: 768px and up
-- `lg`: 1024px and up
-- `xl`: 1280px and up
-- `2xl`: 1536px and up
-
-## 🙏 Acknowledgments
-
-- Developer is [Arthur-Creations](www.arthushon@gmail.com)
-- Powered by HTML and Tailwind CSS
-
-Built by Arthur Creations
-=======
-# Arthur-Creations
-Home website
->>>>>>> 8301a8e0003309565555d210308f0bcec8e5b706
+Built by Arthur Creations.
