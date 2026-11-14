@@ -8,13 +8,15 @@
   var REPO = 'Arthur-Creations';
   var BRANCH = 'main';
   var DIR = 'graphics-src';
-  var API = 'https://api.github.com';
+  var API = window.GX_API_BASE || 'https://api.github.com';
   var MAX_MB = 50;
   var TOKEN_KEY = 'gx-upload-token';
 
   var token = '';
   var items = [];      // {id, file, slug, node, fields}
   var busy = false;
+  var currentXhr = null;
+  var cancelled = false;
 
   var $ = function (id) { return document.getElementById(id); };
   var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
@@ -44,6 +46,13 @@
   }
 
   function mb(bytes) { return (bytes / 1048576).toFixed(1) + ' MB'; }
+
+  function timeText(sec) {
+    if (!isFinite(sec) || sec < 0) return '';
+    if (sec < 60) return 'less than a minute';
+    var m = Math.round(sec / 60);
+    return 'about ' + m + (m === 1 ? ' minute' : ' minutes');
+  }
 
   /* ---------- GitHub calls ---------- */
   function gh(path, opts) {
@@ -82,15 +91,40 @@
     return btoa(bin);
   }
 
-  function putFile(path, base64, message) {
+  // fetch() cannot report upload progress, so big files are sent with XMLHttpRequest.
+  function xhrPut(path, bodyText, onProgress) {
+    return new Promise(function (resolve, reject) {
+      var x = new XMLHttpRequest();
+      currentXhr = x;
+      x.open('PUT', API + path);
+      x.setRequestHeader('Accept', 'application/vnd.github+json');
+      x.setRequestHeader('Authorization', 'Bearer ' + token);
+      x.setRequestHeader('X-GitHub-Api-Version', '2022-11-28');
+      x.setRequestHeader('Content-Type', 'application/json');
+      x.timeout = 30 * 60 * 1000;
+      if (x.upload && onProgress) {
+        x.upload.onprogress = function (e) { if (e.lengthComputable) onProgress(e.loaded, e.total, false); };
+        x.upload.onload = function () { onProgress(1, 1, true); };
+      }
+      x.onload = function () {
+        currentXhr = null;
+        var data = null;
+        try { data = x.responseText ? JSON.parse(x.responseText) : null; } catch (e) { data = null; }
+        resolve({ status: x.status, ok: x.status >= 200 && x.status < 300, data: data });
+      };
+      x.onerror = function () { currentXhr = null; reject(new Error('The connection dropped before the file finished uploading.')); };
+      x.ontimeout = function () { currentXhr = null; reject(new Error('The upload took too long and was stopped.')); };
+      x.onabort = function () { currentXhr = null; reject(new Error('Upload cancelled.')); };
+      x.send(bodyText);
+    });
+  }
+
+  function putFile(path, base64, message, onProgress) {
     return gh(repoPath('/contents/' + path.split('/').map(encodeURIComponent).join('/') + '?ref=' + BRANCH))
       .then(function (existing) {
         var body = { message: message, content: base64, branch: BRANCH };
         if (existing.status === 200 && existing.data && existing.data.sha) body.sha = existing.data.sha;
-        return gh(repoPath('/contents/' + path.split('/').map(encodeURIComponent).join('/')), {
-          method: 'PUT',
-          body: JSON.stringify(body)
-        });
+        return xhrPut(repoPath('/contents/' + path.split('/').map(encodeURIComponent).join('/')), JSON.stringify(body), onProgress);
       })
       .then(function (res) {
         if (!res.ok) {
@@ -251,6 +285,7 @@
     var pending = items.filter(function (i) { return !i.done; }).length;
     $('up-send').disabled = busy || pending === 0;
     $('up-send').textContent = busy ? 'Uploading...' : (pending > 1 ? 'Upload ' + pending + ' designs' : 'Upload design');
+    $('up-cancel').hidden = !busy;
     $('up-empty').hidden = items.length > 0;
   }
 
@@ -335,8 +370,35 @@
            putFile(jsonPath, textToBase64(JSON.stringify(meta, null, 2) + '\n'), 'Add details for ' + item.slug))
         : Promise.resolve();
       return step.then(function () {
-        setStatus(item, 'Uploading the PDF (' + mb(item.file.size) + ')...', '', 35);
-        return putFile(pdfPath, b64, 'Add design: ' + (meta.title || item.slug));
+        var started = Date.now();
+        var lastLoaded = 0;
+        var lastMove = Date.now();
+        setStatus(item, 'Uploading the PDF (' + mb(item.file.size) + '). Please keep this page open.', '', 30);
+        var watch = setInterval(function () {
+          if (Date.now() - lastMove > 45000) {
+            setStatus(item, 'No data has been sent for a while. Check your internet connection. You can wait, or press Cancel and try again.', 'bad', null);
+          }
+        }, 5000);
+        function onProgress(loaded, total, finished) {
+          if (loaded !== lastLoaded) { lastLoaded = loaded; lastMove = Date.now(); }
+          if (finished) {
+            setStatus(item, 'Upload finished. GitHub is saving the file...', '', 58);
+            return;
+          }
+          var frac = total ? loaded / total : 0;
+          var sent = frac * item.file.size;
+          var secs = (Date.now() - started) / 1000;
+          var text = 'Uploading the PDF: ' + mb(sent) + ' of ' + mb(item.file.size) + ' (' + Math.round(frac * 100) + '%)';
+          if (secs > 6 && sent > 0) {
+            var rate = sent / secs;
+            text += '  \u00b7  ' + timeText((item.file.size - sent) / rate) + ' left';
+          }
+          setStatus(item, text, '', 30 + frac * 28);
+        }
+        return putFile(pdfPath, b64, 'Add design: ' + (meta.title || item.slug), onProgress).then(
+          function (r) { clearInterval(watch); return r; },
+          function (e) { clearInterval(watch); throw e; }
+        );
       });
     }).then(function (res) {
       pdfCommit = res && res.commit && res.commit.sha;
@@ -365,9 +427,11 @@
     var todo = items.filter(function (i) { return !i.done; });
     if (!todo.length) return;
     busy = true;
+    cancelled = false;
     updateButtons();
     todo.reduce(function (chain, item) {
       return chain.then(function () {
+        if (cancelled) return null;
         return sendOne(item).catch(function (err) {
           setStatus(item, 'Problem: ' + (err.message || 'upload failed') + ' You can press Upload to try again.', 'bad', null);
         });
@@ -384,6 +448,10 @@
     $('up-token').addEventListener('keydown', function (e) { if (e.key === 'Enter') connect(); });
     $('up-disconnect').addEventListener('click', disconnect);
     $('up-send').addEventListener('click', sendAll);
+    $('up-cancel').addEventListener('click', function () {
+      cancelled = true;
+      if (currentXhr) currentXhr.abort();
+    });
     $('up-file').addEventListener('change', function (e) { addFiles(e.target.files); e.target.value = ''; });
 
     var drop = $('up-drop');
