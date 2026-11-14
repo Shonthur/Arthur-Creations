@@ -12,6 +12,11 @@ on:
 permissions:
   contents: write
 
+# Only one build at a time, so several uploads in a row do not clash
+concurrency:
+  group: build-graphics
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,5 +42,6 @@ jobs:
             echo "Nothing new to save."
           else
             git commit -m "Update graphics gallery images"
+            git pull --rebase origin main
             git push
           fi
