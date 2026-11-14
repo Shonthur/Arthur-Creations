@@ -158,3 +158,5 @@
 .up-btn-ghost { background: #fff; color: var(--gx-navy); }
 .up-btn-ghost:hover:not([disabled]) { background: #f0f4f8; }
 .up-btn[hidden] { display: none; }
+.up-check-top { margin-top: 18px; align-items: flex-start; line-height: 1.5; }
+.up-check-top input { margin-top: 3px; flex: none; }

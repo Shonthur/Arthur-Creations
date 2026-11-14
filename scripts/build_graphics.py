@@ -149,17 +149,12 @@ def build_project(pdf_path, existing):
         out_folder.mkdir(parents=True, exist_ok=True)
         pages = render_pdf(pdf_path, out_folder)
 
-    # Offer the original PDF as a download unless turned off or too big.
+    # The original PDF is never published, so visitors cannot download it.
+    # Remove any copy that an older version of this script made.
     pdf_name = None
-    allow_download = meta.get("download", True)
-    size_mb = pdf_path.stat().st_size / (1024 * 1024)
-    if allow_download and size_mb <= 40:
-        target = out_folder / f"{slug}.pdf"
-        if not target.exists() or not unchanged:
-            shutil.copyfile(pdf_path, target)
-        pdf_name = f"{slug}.pdf"
-    elif allow_download:
-        print(f"  ! {pdf_path.name} is {size_mb:.0f} MB, too big for a download link. Skipped.")
+    for old_copy in out_folder.glob("*.pdf"):
+        old_copy.unlink()
+        print(f"  - removed public copy {old_copy.name}")
 
     return {
         "slug": slug,
@@ -190,14 +185,18 @@ def main():
     SRC_DIR.mkdir(exist_ok=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Projects made by the browser upload page (source == "browser") are never touched here.
     previous = {}
-    if INDEX_FILE.exists() and not args.force:
+    if INDEX_FILE.exists():
         try:
             with open(INDEX_FILE, "r", encoding="utf-8") as f:
                 for p in json.load(f).get("projects", []):
                     previous[p["slug"]] = p
         except (json.JSONDecodeError, OSError, KeyError):
             previous = {}
+    browser_projects = {k: v for k, v in previous.items() if v.get("source") == "browser"}
+    if args.force:
+        previous = {}
 
     pdfs = sorted(SRC_DIR.glob("*.pdf")) + sorted(SRC_DIR.glob("*.PDF"))
     projects, seen = [], set()
@@ -213,14 +212,23 @@ def main():
         except Exception as err:  # keep going if one PDF is bad
             print(f"  ! Could not build {pdf.name}: {err}")
 
+    # Keep browser-made projects (unless a PDF with the same name now replaces them).
+    for slug, project in browser_projects.items():
+        if slug not in seen:
+            projects.append(project)
+
     # Remove folders of PDFs that were deleted.
     for folder in OUT_DIR.iterdir():
-        if folder.is_dir() and folder.name not in seen:
+        if folder.is_dir() and folder.name not in seen and folder.name not in browser_projects:
             print(f"- removing old project folder: {folder.name}")
             shutil.rmtree(folder)
 
     # Newest first, unless you set "order" in the JSON (lower number shows first).
-    projects.sort(key=lambda p: (p["order"] == 0, p["order"], -int(p["added"].replace("-", ""))))
+    def added_number(p):
+        digits = str(p.get("added", "")).replace("-", "")
+        return int(digits) if digits.isdigit() else 0
+
+    projects.sort(key=lambda p: (p.get("order", 0) == 0, p.get("order", 0), -added_number(p)))
 
     index = {"projects": projects}
     with open(INDEX_FILE, "w", encoding="utf-8") as f:

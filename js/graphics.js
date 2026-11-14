@@ -55,7 +55,6 @@
 
   var ICON = {
     back: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>',
-    download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>',
     expand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>',
     zoomIn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>',
     zoomOut: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3M8 11h6"/></svg>',
@@ -225,16 +224,6 @@
     viewBtn.addEventListener('click', function () { openFrom(p, 0, viewBtn); });
 
     var actions = el('div', { 'class': 'gx-actions' }, [viewBtn]);
-    if (p.pdf) {
-      var dl = el('a', {
-        'class': 'gx-btn gx-btn-ghost',
-        href: assetUrl(p, p.pdf),
-        download: p.slug + '.pdf'
-      });
-      dl.innerHTML = ICON.download;
-      dl.appendChild(document.createTextNode('Download PDF'));
-      actions.appendChild(dl);
-    }
 
     var back = el('a', { 'class': 'gx-back', href: '#' });
     back.innerHTML = ICON.back;
@@ -310,7 +299,7 @@
 
   /* ---------- viewer ---------- */
   var lb = (function () {
-    var root, stage, img, spinner, titleEl, subEl, strip, prevBtn, nextBtn, hint, fsBtn, dlBtn;
+    var root, stage, img, spinner, titleEl, subEl, strip, prevBtn, nextBtn, hint, fsBtn;
     var project = null, index = 0;
     var scale = 1, tx = 0, ty = 0;
     var isOpen = false;
@@ -333,12 +322,10 @@
       nextBtn = button('gx-icon-btn gx-nav gx-next', 'Next page', ICON.next, function () { go(index + 1); });
       fsBtn = button('gx-icon-btn gx-hide-sm', 'Toggle full screen', ICON.fullscreen, toggleFullscreen);
       if (!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) fsBtn.hidden = true;
-      dlBtn = el('a', { 'class': 'gx-icon-btn', 'aria-label': 'Download this page as an image', title: 'Download this page', html: ICON.download });
 
       var tools = el('div', { 'class': 'gx-lb-tools' }, [
         button('gx-icon-btn', 'Zoom out', ICON.zoomOut, function () { zoomBy(1 / 1.5); }),
         button('gx-icon-btn', 'Zoom in', ICON.zoomIn, function () { zoomBy(1.5); }),
-        dlBtn,
         fsBtn,
         button('gx-icon-btn', 'Close viewer', ICON.close, requestClose)
       ]);
@@ -578,8 +565,6 @@
       titleEl.textContent = project.title;
       subEl.textContent = 'Page ' + (i + 1) + ' of ' + project.pages.length;
       img.alt = project.title + ', page ' + (i + 1);
-      dlBtn.setAttribute('href', fullUrl);
-      dlBtn.setAttribute('download', project.slug + '-page-' + (i + 1) + '.webp');
       prevBtn.disabled = i === 0;
       nextBtn.disabled = i === project.pages.length - 1;
       prevBtn.hidden = nextBtn.hidden = project.pages.length < 2;
