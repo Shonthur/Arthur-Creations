@@ -1,6 +1,31 @@
 {
   "projects": [
     {
+      "slug": "receipt",
+      "title": "Epic Foods Receipt",
+      "category": "Receipt",
+      "year": "2026",
+      "tools": [
+        "Adobe Illustrator"
+      ],
+      "description": "A receipt page for a restaurant business",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#9ba4d2"
+        }
+      ],
+      "hash": "mwgvou1e",
+      "build": 0,
+      "added": "2026-11-14",
+      "source": "browser"
+    },
+    {
       "slug": "business-card",
       "title": "Epic Foods Business card",
       "category": "Business Card",
