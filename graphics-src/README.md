@@ -23,8 +23,7 @@ For `2027-wall-calendar.pdf` the file is `2027-wall-calendar.json`:
   "category": "Calendars",
   "year": 2027,
   "tools": ["Adobe Illustrator"],
-  "description": "A twelve month wall calendar with a clean, modern layout.",
-  "download": true
+  "description": "A twelve month wall calendar with a clean, modern layout."
 }
 ```
 
@@ -35,7 +34,6 @@ For `2027-wall-calendar.pdf` the file is `2027-wall-calendar.json`:
 | `year` | Shown under the title |
 | `tools` | Shown as small tags |
 | `description` | Short text on the project page |
-| `download` | `false` hides the "Download PDF" button |
 | `order` | A number. Lower numbers show first. Without it, newest shows first |
 
 Every setting is optional. Keep the quotes and commas exactly as shown.
@@ -43,6 +41,6 @@ Every setting is optional. Keep the quotes and commas exactly as shown.
 ## Tips for the best quality
 
 - Use the real page size you designed in. The converter makes images 2600 pixels on the longest side.
-- Keep the original PDF under 40 MB. Bigger files still get HD images, but no download button.
+- Visitors cannot download your PDF from the gallery. But anything in this folder can be opened by anyone who knows its web address. To keep a PDF private, use the upload page (`pages/upload.html`) instead. It makes the images in your browser and never stores the PDF.
 - Use simple file names with letters, numbers and dashes.
 - To remove a project, delete its PDF (and its `.json` file). Its images are removed automatically.

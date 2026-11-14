@@ -149,17 +149,12 @@ def build_project(pdf_path, existing):
         out_folder.mkdir(parents=True, exist_ok=True)
         pages = render_pdf(pdf_path, out_folder)
 
-    # Offer the original PDF as a download unless turned off or too big.
+    # The original PDF is never published, so visitors cannot download it.
+    # Remove any copy that an older version of this script made.
     pdf_name = None
-    allow_download = meta.get("download", True)
-    size_mb = pdf_path.stat().st_size / (1024 * 1024)
-    if allow_download and size_mb <= 40:
-        target = out_folder / f"{slug}.pdf"
-        if not target.exists() or not unchanged:
-            shutil.copyfile(pdf_path, target)
-        pdf_name = f"{slug}.pdf"
-    elif allow_download:
-        print(f"  ! {pdf_path.name} is {size_mb:.0f} MB, too big for a download link. Skipped.")
+    for old_copy in out_folder.glob("*.pdf"):
+        old_copy.unlink()
+        print(f"  - removed public copy {old_copy.name}")
 
     return {
         "slug": slug,

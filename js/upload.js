@@ -19,7 +19,6 @@
   var THUMB_QUALITY = 0.82;
   var MAX_PDF_MB = 150;        // biggest PDF this page will open
   var MAX_PAGES = 80;
-  var DOWNLOAD_MAX_MB = 15;    // original PDFs above this are never uploaded
   var TOKEN_KEY = 'gx-upload-token';
   var PDFJS_BASE = new URL('../js/vendor/pdfjs/', location.href).href;
 
@@ -579,12 +578,6 @@
       files.push({ name: p.fullName, blob: p.fullBlob });
       files.push({ name: p.thumbName, blob: p.thumbBlob });
     });
-    var pdfName = null;
-    var wantPdf = $('up-dl').checked && item.file.size <= DOWNLOAD_MAX_MB * 1048576;
-    if (wantPdf) {
-      pdfName = item.slug + '.pdf';
-      files.push({ name: pdfName, blob: item.file });
-    }
 
     // 3. Upload
     var upStart = Date.now();
@@ -607,7 +600,7 @@
       tools: meta.tools,
       description: meta.description,
       order: 0,
-      pdf: pdfName,
+      pdf: null,
       pages: pages.map(function (p) { return { full: p.fullName, thumb: p.thumbName, w: p.w, h: p.h, color: p.color }; }),
       hash: liveToken,
       build: 0,
