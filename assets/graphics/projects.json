@@ -1,6 +1,32 @@
 {
   "projects": [
     {
+      "slug": "business-card",
+      "title": "Epic Foods Business card",
+      "category": "Business Card",
+      "year": "",
+      "tools": [
+        "Adobe Illustrator",
+        "Adobe Photoshop"
+      ],
+      "description": "Professional Business cars for restaurant business.",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#ffffff"
+        }
+      ],
+      "hash": "mwgvkd3q",
+      "build": 0,
+      "added": "2026-11-14",
+      "source": "browser"
+    },
+    {
       "slug": "rina-days",
       "title": "Epic Foods Calendar",
       "category": "Calendars",
