@@ -1,6 +1,31 @@
 {
   "projects": [
     {
+      "slug": "epic-food-hub-letterhead-improved",
+      "title": "Epic Foods Letterhead",
+      "category": "Design",
+      "year": "",
+      "tools": [
+        "Adobe Illustrator"
+      ],
+      "description": "",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#fdfefe"
+        }
+      ],
+      "hash": "mwgx9cpx",
+      "build": 0,
+      "added": "2026-11-14",
+      "source": "browser"
+    },
+    {
       "slug": "receipt",
       "title": "Epic Foods Receipt",
       "category": "Receipt",
