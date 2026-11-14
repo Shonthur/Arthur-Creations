@@ -119,7 +119,7 @@
                         <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
                         <li>Name it <code>Graphics upload</code> and set an expiry (90 days is fine).</li>
                         <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick <code>Arthur-Creations</code>.</li>
-                        <li>Under <b>Permissions &gt; Repository permissions</b>, set <b>Contents</b> to <b>Read and write</b> and <b>Actions</b> to <b>Read-only</b>.</li>
+                        <li>Under <b>Permissions &gt; Repository permissions</b>, set <b>Contents</b> to <b>Read and write</b>. Nothing else is needed.</li>
                         <li>Click <b>Generate token</b>, copy it, and paste it below.</li>
                     </ol>
                     <div class="up-row">
@@ -139,18 +139,20 @@
 
                     <section class="up-card">
                         <h2>Step 2. Choose your PDFs</h2>
-                        <p>Each PDF becomes one project. You can add several at once.</p>
+                        <p>Each PDF becomes one project. Your browser makes the HD images, so only a few MB are sent, even for a big PDF.</p>
                         <label class="up-drop" id="up-drop">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
                             <strong>Choose PDF files</strong>
-                            <span>or drag them here. Up to 50 MB each.</span>
+                            <span>or drag them here. Up to 150 MB each.</span>
                             <input type="file" id="up-file" accept="application/pdf,.pdf" multiple />
                         </label>
                         <p class="up-notes" id="up-notes" role="status"></p>
                         <p class="up-empty" id="up-empty">No files chosen yet.</p>
                         <ul class="up-list" id="up-list"></ul>
                         <datalist id="up-cats"></datalist>
+                        <label class="up-check up-check-top"><input type="checkbox" id="up-dl" /> Also let visitors download the original PDF (only for files up to 15 MB). Leave this off to keep your print-ready file private.</label>
                         <div class="up-send-row">
+                            <button type="button" class="up-btn up-btn-ghost" id="up-cancel" hidden>Cancel</button>
                             <button type="button" class="up-btn" id="up-send" disabled>Upload design</button>
                         </div>
                     </section>
