@@ -134,7 +134,7 @@
 .up-status { margin: 8px 0 0; font-size: 0.9rem; color: var(--gx-muted); min-height: 1.2em; }
 .up-status a { color: var(--gx-blue); font-weight: 600; }
 
-.up-send-row { display: flex; justify-content: flex-end; margin-top: 18px; }
+.up-send-row { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
 .up-btn {
   appearance: none;
   font: 600 0.95rem "Inter", sans-serif;
@@ -154,3 +154,7 @@
   .up-grid { grid-template-columns: 1fr; }
   .up-send-row .up-btn, .up-row .up-btn { width: 100%; }
 }
+
+.up-btn-ghost { background: #fff; color: var(--gx-navy); }
+.up-btn-ghost:hover:not([disabled]) { background: #f0f4f8; }
+.up-btn[hidden] { display: none; }
