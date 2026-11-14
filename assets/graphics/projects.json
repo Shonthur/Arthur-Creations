@@ -1,6 +1,75 @@
 {
   "projects": [
     {
+      "slug": "rina-days",
+      "title": "Epic Foods Calendar",
+      "category": "Calendars",
+      "year": "2026",
+      "tools": [
+        "Adobe Illustrator",
+        "Adobe Photoshop",
+        "Adobe Indesign"
+      ],
+      "description": "Cleaned and branded wall callendar for a restaurant.",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#ffffff"
+        },
+        {
+          "full": "p02.webp",
+          "thumb": "t02.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#f9ecdf"
+        },
+        {
+          "full": "p03.webp",
+          "thumb": "t03.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#ffffff"
+        },
+        {
+          "full": "p04.webp",
+          "thumb": "t04.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#fefefd"
+        },
+        {
+          "full": "p05.webp",
+          "thumb": "t05.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#ffffff"
+        },
+        {
+          "full": "p06.webp",
+          "thumb": "t06.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#ffffff"
+        },
+        {
+          "full": "p07.webp",
+          "thumb": "t07.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#535e46"
+        }
+      ],
+      "hash": "mwguzed3",
+      "build": 0,
+      "added": "2026-11-14",
+      "source": "browser"
+    },
+    {
       "slug": "flyer",
       "title": "Flyer",
       "category": "Design",
