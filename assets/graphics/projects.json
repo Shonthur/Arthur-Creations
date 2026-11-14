@@ -1,3 +1,26 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "slug": "flyer",
+      "title": "Flyer",
+      "category": "Design",
+      "year": "",
+      "tools": [],
+      "description": "",
+      "order": 0,
+      "pdf": "flyer.pdf",
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 1833,
+          "h": 2600,
+          "color": "#504e3f"
+        }
+      ],
+      "hash": "de87d336fc841861",
+      "build": 2,
+      "added": "2026-11-14"
+    }
+  ]
 }
