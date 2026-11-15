@@ -1,4 +1,4 @@
-/* Arthur Creations - shared site script: mobile menu, reveal on scroll, price calculator */
+/* Avalon Corporate Solutions - shared site script: mobile menu, reveal on scroll, price calculator */
 (function () {
   var root = document.documentElement;
   root.classList.add("js");

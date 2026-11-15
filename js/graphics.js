@@ -5,7 +5,7 @@
 
   var BASE = '../assets/graphics/';
   var DATA_URL = BASE + 'projects.json';
-  var SITE_NAME = 'Arthur Creations';
+  var SITE_NAME = 'Avalon Corporate Solutions';
 
   var state = {
     projects: [],

@@ -1,158 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arthur Creations</title>
-    <meta name="description" content="Arthur Creations - web development and graphic design. Powered by vision, crafted for the future." />
-    <meta name="theme-color" content="#1a365d" />
-    <link rel="icon" href="public/favicon.ico" />
-    <noscript><meta http-equiv="refresh" content="0; url=pages/homepage.html" /></noscript>
-    <link rel="stylesheet" href="css/main.css" />
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        .loading-container {
-            text-align: center;
-            align-items: justify;
-            justify-items: center;
-            color: white;
-        }
-        
-        .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-        
-        .loading-text {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.5s forwards;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards, spin 1s linear 1s infinite;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .redirect-message {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 2s forwards;
-        }
-    </style>
-    <style>
-        .skip-btn {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.14);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            padding: 10px 20px;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            text-decoration: none;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 1.2s forwards;
-            transition: background 0.2s;
-        }
-        .skip-btn:hover { background: rgba(255, 255, 255, 0.28); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avalon Corporate Solutions</title>
+<meta name="description" content="Avalon Corporate Solutions: web development, graphic design, video and IT support in Uganda.">
+<meta name="theme-color" content="#142a37">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Avalon Corporate Solutions">
+<meta property="og:description" content="Web development, graphic design, video and IT support in Uganda.">
+<meta property="og:image" content="https://shonthur.github.io/Arthur-Creations/assets/avalon-profile.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="public/favicon.ico">
+<noscript><meta http-equiv="refresh" content="0; url=pages/homepage.html"></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=Montserrat:wght@500;700&display=swap">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{display:grid;place-items:center;overflow:hidden;color:#fff;font-family:"Inter",system-ui,sans-serif;
+background:radial-gradient(800px 500px at 80% 10%,rgba(49,130,206,.22),transparent 60%),radial-gradient(700px 480px at 10% 100%,rgba(56,161,105,.14),transparent 60%),#142a37}
+.stage{display:flex;align-items:center;gap:clamp(14px,3vw,30px);padding:0 24px}
+.mk{height:clamp(86px,17vw,150px);flex:none}
+.mk svg{height:100%;width:auto;display:block;overflow:visible}
+.mk path{fill:#fff}
+.tx{font-family:"Montserrat",sans-serif;line-height:1}
+.tx b{display:block;font-weight:700;font-size:clamp(2rem,8.6vw,4.4rem);letter-spacing:.03em;opacity:0;animation:rise .9s cubic-bezier(.22,.61,.36,1) 1.15s forwards}
+.tx i{display:block;font-style:normal;font-weight:500;font-size:clamp(.5rem,2.3vw,1.13rem);letter-spacing:.14em;margin-top:.7em;opacity:0;animation:rise .9s cubic-bezier(.22,.61,.36,1) 1.45s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes peak{from{opacity:0;transform:translateY(-70px)}to{opacity:1;transform:none}}
+@keyframes leg{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
+@keyframes swoosh{0%{opacity:0;transform:translate(-120px,120px)}55%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:none}50%{transform:translate(8px,-8px)}}
+.av-peak{animation:peak .9s cubic-bezier(.22,.61,.36,1) both}
+.av-leg{animation:leg .9s cubic-bezier(.22,.61,.36,1) .15s both}
+.av-swoosh{animation:swoosh 1.2s cubic-bezier(.22,.61,.36,1) .35s both,float 2.4s ease-in-out 1.6s infinite}
+.bar{position:fixed;left:50%;bottom:64px;width:min(240px,60vw);height:3px;transform:translateX(-50%);background:rgba(255,255,255,.14);border-radius:3px;overflow:hidden;opacity:0;animation:rise .6s ease 1.8s forwards}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#3182ce,#38a169);animation:fill 3s linear 1.8s forwards}
+@keyframes fill{to{width:100%}}
+.skip{position:fixed;top:22px;right:22px;color:#fff;text-decoration:none;font-weight:500;font-size:.9rem;padding:10px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);opacity:0;animation:rise .6s ease 1s forwards;transition:background .2s}
+.skip:hover,.skip:focus-visible{background:rgba(255,255,255,.22)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important}}
+</style>
 </head>
 <body>
-    <div class="loading-container">
-        <div class="logo">Arthur-Web-Creations.</div>
-        <div class="loading-text">'Powered by vision,Crafted for the future...'</div>
-         <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.27 403.27" class="w-16 h-16" role="img" aria-label="Logo">
-  <circle cx="201.64" cy="201.64" r="201.64" fill="#1a365d"/>
-  <rect x="180.78" y="83.5" width="0.72" height="0.14" fill="#1a365d"/>
-  <rect x="180.78" y="83.5" width="0.72" height="0.14" fill="#1a365d"/>
-  <polygon points="142.38 203.21 143.88 200.1 159.17 203.6 158.36 207.14 156.84 210.25 142.38 203.21" fill="#1a365d"/>
-  <polygon points="151.12 203.6 151.12 203.63 150.68 204.54 149.62 206.71 151.12 203.6" fill="#1a365d"/>
-  <polygon points="143.08 203.63 143.08 203.57 151.12 195.53 158.35 207.17 143.08 203.63" fill="#1a365d"/>
-  <polygon points="151.15 203.57 151.12 203.63 151.12 203.57 151.15 203.57" fill="#1a365d"/>
-  <polygon points="175.95 297.51 167.9 289.47 167.9 206.74 175.95 198.69 214.34 198.69 222.38 206.74 222.38 289.47 214.34 297.51 175.95 297.51" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <rect x="175.95" y="206.74" width="38.39" height="82.73" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <polygon points="288.52 297.51 281.79 293.88 227.54 211.15 234.27 198.69 279.55 198.69 286.19 202.19 342.83 284.93 336.2 297.51 288.52 297.51" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <polygon points="336.2 289.47 288.52 289.47 234.27 206.74 279.55 206.74 336.2 289.47" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <path d="M349.63,285,349,268.93c1.06-.08,2.1-.18,3.14-.3,2.68-.29,5.14-.63,7.53-1.05h.07c1.62-.27,3.24-.58,4.82-.94,2.79-.6,5.27-1.24,7.61-2L377.09,280c-.43.15-.88.29-1.31.42-2.68.81-5.57,1.56-8.75,2.25-1.83.41-3.74.78-5.64,1.1h0c-2.68.46-5.53.86-8.46,1.18L352,285Z" transform="translate(-64.25 -75.24)" fill="#1a365d"/>
-  <path d="M374.56,272.37l-1,.33c-2.65.8-5.39,1.5-8.2,2.11-1.72.38-3.46.72-5.25,1h0c-2.61.45-5.27.82-8,1.12h-2.41c1.16-.08,2.31-.2,3.44-.32,2.74-.3,5.41-.67,8-1.13h0q2.68-.44,5.25-1C369.16,273.87,371.9,273.18,374.56,272.37Z" transform="translate(-64.25 -75.24)" fill="#1a356d"/>
-  <polygon points="139.4 227.35 135.78 216.61 140.44 207.12 142.41 203.14 143.15 203.5 151.12 195.53 158.37 207.1 143.57 203.71 156.85 210.23 150.28 223.71 139.45 227.38 139.4 227.35" fill="#1a365d"/>
-  <path d="M215.38,278.81v0Zm-3.47,7.09-.4.81h0l-1.24,2.51-3,6.17.06,0,3-6.19,1.21-2.49,2.33-4.78Z" transform="translate(-64.25 -75.24)" fill="#1a365d"/>
-  <polygon points="137.2 214 129.15 205.95 129.15 170.75 137.2 162.7 168.87 162.7 176.91 170.75 176.91 174.5 168.87 182.54 148.08 182.54 148.08 194.16 168.87 194.16 176.91 202.2 176.91 205.95 168.87 214 137.2 214" fill="#231f20"/>
-  <polygon points="137.2 205.95 168.87 205.95 168.87 202.2 140.03 202.2 140.03 174.5 168.87 174.5 168.87 170.75 137.2 170.75 137.2 205.95" fill="#1a365d"/>
-  <polygon points="165.61 182.56 157.57 174.51 157.57 171.68 165.61 163.63 274.42 163.63 282.46 171.68 282.46 174.51 274.42 182.56 165.61 182.56" fill="#1a365d"/>
-  <rect x="165.61" y="171.67" width="108.81" height="2.84" fill="#1a365d"/>
-  <polygon points="148.87 213.09 140.83 205.05 140.83 202.21 148.87 194.17 257.68 194.17 265.72 202.21 265.72 205.05 257.68 213.09 148.87 213.09" fill="#1a365d"/>
-  <rect x="148.87" y="202.21" width="108.81" height="2.84" fill="#1a365d"/>
-  <path d="M128.43,372.75l-7.2-11.64L178,247.42l40.72-92.12,7.36-4.8h7.55l2.32,2.33,2.47-2.47H325c14.54,0,27.81,1.94,39.43,5.75,1.95.62,4,1.35,6.13,2.21,13.56,5.45,24.29,13.38,31.88,23.57a61.51,61.51,0,0,1,3,67.58,54.63,54.63,0,0,1-3.12,4.58,9.45,9.45,0,0,1-.59.76l-1.06,1.34c-.31.39-.74.9-1.16,1.4a63.91,63.91,0,0,1-5.08,5.21A77.16,77.16,0,0,1,372,276.94l-1.57.65c-1.78.72-3.57,1.37-5.34,2l-.6.2-.84.27c-2.64.85-5.4,1.61-8.43,2.3-1.73.41-3.56.79-5.37,1.11h0c-2.55.47-5.25.86-8,1.19-1.15.13-2.35.26-3.56.35-4.16.38-8.64.58-13.19.58H233.65l-17.18-.09-1.81,3.85L178,368.1l-7.3,4.65Zm203.15-131c.33,0,.66-.07,1-.12l1.37-.19c.44-.07.88-.15,1.31-.24l.15,0,.85-.17,1.07-.27c.58-.13,1.14-.29,1.7-.47l.2-.06c.37-.11.74-.22,1.09-.35l.46-.18c.38-.13.76-.28,1.13-.43l.16-.07c.31-.12.62-.25.92-.39l1.33-.66a22,22,0,0,0,8.67-7.7,24.38,24.38,0,0,0,0-24.89,22.71,22.71,0,0,0-9.88-8.31,35,35,0,0,0-10.66-2.9H285.93v47.42Z" transform="translate(-64.25 -75.24)" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <path d="M396,186.7Q386,173.15,367.6,165.78c-1.84-.73-3.7-1.41-5.64-2q-16.33-5.37-36.92-5.35h-86.6v27.83h.94v59.33h38.51V186.24h55a43,43,0,0,1,13.6,3.65,30.71,30.71,0,0,1,13.25,11.27A30.57,30.57,0,0,1,348,245.24c-.52.27-1.06.54-1.61.79s-.91.42-1.38.6-1,.41-1.56.6c-.13.05-.26.11-.4.15-.51.19-1,.36-1.57.51-.75.24-1.51.46-2.29.64l-1.16.29c-.4.08-.81.17-1.22.24s-1,.2-1.57.28-1.06.16-1.59.23-1.09.13-1.63.18H224.2l2.11-4.51,4-8.54,3.37-7.24V158.55H226.1l-40.79,92.29-11.73,23.49-45.15,90.38h42.26L203,295.4l4.42-9.5,1.85-3.95,1.42-3.11v0h0l.65-1.42,22.33.11H325q6.49,0,12.57-.55c1.1-.08,2.19-.2,3.26-.32,2.59-.3,5.11-.67,7.58-1.13h0c1.69-.29,3.34-.63,5-1,2.66-.61,5.25-1.3,7.76-2.11l.91-.3.32-.11c1.7-.56,3.37-1.17,5-1.82.5-.2,1-.4,1.47-.61A68.81,68.81,0,0,0,389,256.85a58.57,58.57,0,0,0,4.4-4.52c.36-.42.72-.85,1.06-1.27s.7-.87,1-1.31c.15-.17.28-.34.42-.52,1-1.31,1.88-2.63,2.71-4A53.5,53.5,0,0,0,396,186.7Z" transform="translate(-64.25 -75.24)" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <polygon points="172.04 141.12 164 133.08 164 83.64 172.04 75.59 174.88 75.59 182.93 83.64 182.93 133.08 174.88 141.12 172.04 141.12" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <rect x="172.04" y="83.64" width="2.84" height="49.44" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <path d="M266.29,470.79v-6.62l2.64-2.68a183.43,183.43,0,0,0,63.44-12.42l3.45,1.47,2.54,6.12-1.5,3.53A195.12,195.12,0,0,1,269,473.47Zm-4,2.68a195.12,195.12,0,0,1-67.84-13.28l-1.5-3.53,2.53-6.12,3.45-1.47a183.53,183.53,0,0,0,63.45,12.42l2.63,2.68v6.62Zm77.23-17.26L337,450.09l1.42-3.5A184.44,184.44,0,0,0,392,411.49l3.73.05,4.7,4.7-.06,3.85a196.83,196.83,0,0,1-57.29,37.56Zm-151.28,1.43A196.4,196.4,0,0,1,130.91,420l-.06-3.85,4.69-4.68,3.73-.06a184.16,184.16,0,0,0,53.65,35.17l1.42,3.5-2.54,6.11Zm208.43-46.91v-3.79a184.59,184.59,0,0,0,37-53.31l3.47-1.36,6.13,2.55,1.4,3.59a196.71,196.71,0,0,1-39.54,57h-3.8Zm-270.59,4.6a196.46,196.46,0,0,1-39.48-56.92L88,354.82l6.12-2.55,3.47,1.36a184.74,184.74,0,0,0,37,53.24v3.79l-4.68,4.68ZM83.92,352.25a195,195,0,0,1-15-68.39l2.68-2.78h6.62L81,283.66a183.22,183.22,0,0,0,14,64l-1.45,3.51-6.13,2.54Zm353.87-1.09-1.45-3.51a183.31,183.31,0,0,0,14-64l2.69-2.58h6.62l2.68,2.78a194.89,194.89,0,0,1-15,68.39l-3.5,1.45Zm15.41-71.34-2.69-2.68v-.48a183.4,183.4,0,0,0-11.64-64.57l1.49-3.42,6.12-2.54,3.54,1.54a195.61,195.61,0,0,1,12.49,69v.48l-2.69,2.68Zm-381.69,0-2.68-2.68v-.48a195.68,195.68,0,0,1,12.48-69l3.53-1.54L91,208.67l1.48,3.42a183.58,183.58,0,0,0-11.64,64.57v.48l-2.68,2.68Zm13.71-74.89-1.45-3.51A196.81,196.81,0,0,1,122.25,142l3.85-.06,4.7,4.69,0,3.74a184.45,184.45,0,0,0-36,55.67l-3.51,1.45ZM436.48,206a184.4,184.4,0,0,0-36.06-55.74l.05-3.73,4.69-4.69,3.85.06a196,196,0,0,1,38.54,59.52l-1.45,3.51L440,207.47ZM131.61,145.65,126.93,141v-3.8a196.76,196.76,0,0,1,59.31-40.59L189.8,98l2.54,6.12L191,107.6a184.47,184.47,0,0,0-55.55,38.05Zm264.25-.06a184.66,184.66,0,0,0-55.47-38L339,104.12,341.53,98l3.57-1.43a196.75,196.75,0,0,1,59.23,40.52v3.81l-4.68,4.68Zm-61.5-40.52a183.1,183.1,0,0,0-65.43-13.22l-2.64-2.69V82.55L269,79.87A195.17,195.17,0,0,1,338.91,94l1.48,3.52-2.54,6.13-2.48,1.66ZM193.49,103.6,191,97.48,192.43,94a194.82,194.82,0,0,1,69.88-14.09L265,82.55v6.61l-2.63,2.69A183.06,183.06,0,0,0,197,105.07Z" transform="translate(-64.25 -75.24)" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-  <path d="M78.27,283.76H71.65a193,193,0,0,0,14.74,67.46l6.14-2.54A186,186,0,0,1,78.27,283.76Zm5.55-75.15a193.38,193.38,0,0,0-12.31,68.05v.48h6.63v-.48A186.43,186.43,0,0,1,90,211.15ZM187.32,99a194.83,194.83,0,0,0-58.5,40l4.69,4.69a187.87,187.87,0,0,1,56.35-38.6ZM269,82.55v6.61a186.06,186.06,0,0,1,66.38,13.42h0l2.54-6.14A193,193,0,0,0,269,82.55ZM344,99l-2.53,6.12a187.91,187.91,0,0,1,56.27,38.53l4.69-4.68A194.58,194.58,0,0,0,344,99Zm63.05,44.72-4.69,4.68A187.68,187.68,0,0,1,439,205l6.12-2.53A194.52,194.52,0,0,0,407.06,143.75Zm40.45,64.86-6.12,2.54a186.65,186.65,0,0,1,11.81,65.51v.48h6.62v-.48A193.15,193.15,0,0,0,447.51,208.61ZM436.15,354.75a188,188,0,0,1-37.56,54.08l4.68,4.69a195.08,195.08,0,0,0,39-56.22ZM198,451.57l-2.54,6.12a193,193,0,0,0,66.91,13.1v-6.62A186.28,186.28,0,0,1,198,451.57ZM95.19,354.75l-6.13,2.55A194.62,194.62,0,0,0,128,413.44l4.68-4.68A187.84,187.84,0,0,1,95.19,354.75Zm42.25,58.63-4.69,4.68a194.15,194.15,0,0,0,56.57,37.11l2.54-6.11A187.49,187.49,0,0,1,137.44,413.38Zm195.91,38.19A186.33,186.33,0,0,1,269,464.17v6.62a192.94,192.94,0,0,0,66.9-13.1Zm60.48-38.13a187.77,187.77,0,0,1-54.35,35.62l2.54,6.12a194.75,194.75,0,0,0,56.5-37Zm59.23-129.68a186.24,186.24,0,0,1-14.24,64.92l6.11,2.54a192.54,192.54,0,0,0,14.76-67.46ZM193.43,96.45l2.54,6.13a186.06,186.06,0,0,1,66.38-13.42V82.55A192.75,192.75,0,0,0,193.43,96.45ZM124.2,143.82a194.82,194.82,0,0,0-37.95,58.63L92.38,205a187.65,187.65,0,0,1,36.52-56.49Z" transform="translate(-64.25 -75.24)" fill="#ffffff" stroke="#1a365d" stroke-miterlimit="10" stroke-width="3"/>
-</svg>
-        <div class="spinner"></div>
-        <div class="redirect-message">Redirecting to page...</div>
-    </div>
-    <a class="skip-btn" href="pages/homepage.html">Enter site</a>
-
-    <script>
-        // Go to the homepage after 4.5 seconds, or sooner if the visitor clicks or presses a key.
-        // location.replace keeps this splash screen out of the Back button history.
-        var HOME = 'pages/homepage.html';
-        var gone = false;
-        function enter() {
-            if (gone) return;
-            gone = true;
-            window.location.replace(HOME);
-        }
-        setTimeout(enter, 4500);
-        document.addEventListener('click', enter);
-        document.addEventListener('keydown', enter);
-    </script>
+<a class="skip" href="pages/homepage.html">Enter site</a>
+<div class="stage" role="img" aria-label="Avalon Corporate Solutions">
+  <div class="mk"><svg class="av-mark" viewBox="0 0 337.5 319.8" fill-rule="evenodd" aria-hidden="true" focusable="false"><path class="av-peak" d="M168.8 0.0 L168.0 0.0 L167.2 0.8 L122.5 88.8 L74.5 181.5 L74.5 182.8 L75.2 182.8 L90.2 175.2 L103.2 170.2 L126.0 162.5 L130.2 161.5 L150.0 155.0 L150.8 154.2 L167.5 120.2 L168.8 120.8 L178.5 140.5 L179.5 142.0 L180.5 142.2 L195.0 134.5 L206.8 126.8 L218.2 118.0 L225.5 111.2 L225.5 109.8Z"/><path class="av-swoosh" d="M330.8 19.2 L329.8 19.0 L326.5 21.0 L323.0 22.5 L307.0 31.2 L287.5 41.0 L259.5 56.0 L254.0 58.5 L246.2 63.0 L233.8 69.5 L233.2 70.2 L234.5 71.0 L246.5 73.5 L262.2 77.5 L264.0 78.2 L266.0 78.5 L266.8 79.0 L266.8 80.2 L259.2 90.8 L247.0 104.5 L238.5 113.0 L228.2 122.2 L222.0 127.5 L213.0 134.2 L202.8 141.0 L191.8 147.5 L180.8 153.0 L170.5 157.5 L149.2 166.0 L134.0 171.0 L124.8 173.5 L112.2 178.0 L109.2 178.8 L87.0 188.0 L75.2 194.0 L66.8 199.0 L58.8 204.5 L49.8 211.8 L43.0 218.0 L37.5 223.8 L32.0 230.2 L25.2 239.5 L20.0 248.0 L16.5 254.5 L12.8 262.8 L11.8 266.0 L10.2 268.8 L6.2 280.5 L2.8 295.0 L2.2 300.0 L0.5 309.0 L0.2 313.5 L1.0 313.0 L2.2 310.5 L5.2 302.8 L10.2 293.2 L16.8 282.2 L23.0 273.2 L30.0 264.8 L37.2 256.8 L46.0 248.5 L54.5 241.8 L60.0 237.8 L73.0 229.5 L81.5 224.8 L90.2 220.5 L116.5 209.5 L150.0 197.8 L162.5 192.5 L181.2 183.2 L197.2 173.5 L209.8 164.0 L221.5 153.5 L236.2 138.0 L236.8 138.2 L236.0 140.2 L230.8 147.5 L220.2 160.8 L216.2 165.2 L204.0 177.2 L193.2 186.0 L181.5 194.2 L170.8 200.5 L148.2 211.2 L132.5 217.5 L125.5 219.8 L124.2 220.5 L109.8 225.8 L102.5 228.8 L88.2 235.5 L78.5 240.5 L71.2 244.8 L62.8 250.2 L53.8 256.8 L37.8 270.2 L21.5 287.8 L12.2 299.8 L2.2 314.8 L0.0 318.8 L0.0 319.5 L1.0 320.0 L70.8 319.8 L71.8 318.2 L73.0 311.8 L75.2 304.8 L78.5 297.8 L82.2 291.0 L89.0 281.8 L94.0 276.5 L100.5 270.8 L109.5 264.5 L122.8 257.5 L165.0 241.2 L176.5 236.0 L190.0 229.0 L199.0 223.8 L212.5 214.8 L222.2 207.0 L231.8 198.8 L244.8 185.5 L254.0 175.0 L262.8 164.2 L274.8 147.5 L292.0 120.5 L300.5 105.5 L301.5 105.2 L302.8 106.5 L309.2 115.5 L321.5 131.0 L322.0 130.5 L322.0 126.2 L323.0 117.5 L324.0 100.5 L325.0 92.8 L326.8 66.8 L327.8 58.2 L328.0 51.5 L328.8 45.8Z"/><path class="av-leg" d="M262.0 180.8 L253.5 190.8 L238.2 206.2 L228.2 215.0 L220.2 221.0 L218.8 222.8 L248.2 281.8 L255.5 294.2 L262.8 303.8 L271.0 310.8 L279.2 315.2 L288.5 318.2 L297.8 319.8 L337.5 319.8 L338.0 319.0 L315.0 277.8 L263.8 182.0 L262.8 180.8Z"/></svg></div>
+  <div class="tx"><b>AVALON</b><i>CORPORATE SOLUTIONS</i></div>
+</div>
+<div class="bar" aria-hidden="true"><span></span></div>
+<script>
+setTimeout(function () { window.location.replace("pages/homepage.html"); }, 4900);
+</script>
 </body>
 </html>

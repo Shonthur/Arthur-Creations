@@ -20,8 +20,6 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .sx-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--gx-line)}
 .sx-nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
 .sx-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
-.sx-brand img{width:42px;height:42px}
-.sx-brand span{font:700 1.05rem "Poppins",sans-serif;color:var(--gx-navy);letter-spacing:.03em;white-space:nowrap}
 .sx-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
 .sx-links a{display:block;text-decoration:none;white-space:nowrap;color:var(--gx-muted);font-weight:500;font-size:.92rem;padding:8px 12px;border-radius:10px;transition:color .2s,background .2s}
 .sx-links a:hover{color:var(--gx-navy);background:#edf2f7}
@@ -196,7 +194,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .sx-footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:36px;padding-bottom:40px}
 .sx-footer h4{font:600 .8rem "Inter",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:14px}
 .sx-body .sx-footer h4{color:#fff}
-.sx-footer .sx-brand span{color:#fff}
+.sx-footer .av-lock{color:#fff}
 .sx-footer p{line-height:1.7;margin-top:14px;max-width:320px}
 .sx-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
 .sx-footer a{text-decoration:none;transition:color .2s}
@@ -268,3 +266,23 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 @media (max-width:620px){.sx-abhero{padding:56px 0 64px}.sx-abframe{height:380px}.sx-abf1{right:-6px}.sx-abf2{left:-6px}}
 .sx-abf1{background:rgba(255,255,255,.92)}
 .sx-abf2{background:rgba(255,255,255,.92);width:140px;white-space:nowrap}
+
+/* ---------- Avalon logo + animation ---------- */
+:root{--sx-ink:#142a37}
+.av-lock{color:var(--sx-ink);gap:12px}
+.av-mk{display:block;height:38px;flex:none}
+.av-mark{display:block;height:100%;width:auto;overflow:visible}
+.av-mark path{fill:currentColor}
+.av-tx{display:flex;flex-direction:column;line-height:1;font-family:"Montserrat","Inter",sans-serif;white-space:nowrap}
+.av-tx b{font-weight:700;font-size:1.28rem;letter-spacing:.045em}
+.av-tx i{font-style:normal;font-weight:500;font-size:.54rem;letter-spacing:.17em;margin-top:4px}
+@keyframes av-peak{from{opacity:0;transform:translateY(-34px)}to{opacity:1;transform:none}}
+@keyframes av-leg{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes av-swoosh{0%{opacity:0;transform:translate(-60px,60px)}55%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes av-glint{0%,100%{transform:none}50%{transform:translate(5px,-5px)}}
+.av-anim .av-peak{animation:av-peak .8s var(--gx-ease) both}
+.av-anim .av-leg{animation:av-leg .8s var(--gx-ease) .15s both}
+.av-anim .av-swoosh{animation:av-swoosh 1.1s var(--gx-ease) .35s both}
+.av-lock:hover .av-swoosh{animation:av-glint 1.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.av-anim path{animation:none!important}.av-lock:hover .av-swoosh{animation:none}}
+@media (max-width:620px){.av-mk{height:34px}.av-tx b{font-size:1.15rem}.av-tx i{font-size:.48rem}}
