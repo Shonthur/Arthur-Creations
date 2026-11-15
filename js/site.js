@@ -31,6 +31,7 @@
     items.forEach(function (el) { el.classList.add("sx-in"); });
   }
 
+  var yr = document.getElementById("sx-yr"); if (yr) yr.textContent = new Date().getFullYear();
   var year = document.getElementById("sx-year");
   if (year) year.textContent = new Date().getFullYear();
 
