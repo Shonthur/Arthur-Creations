@@ -344,3 +344,11 @@ a.sx-proj-shot{display:block;text-decoration:none;color:inherit}
 .cs-tablist button:hover{background:#edf2f7;color:var(--gx-navy)}
 .cs-tablist button[aria-selected="true"]{background:var(--gx-navy);color:#fff}
 .sx-case-shot img.sx-gfx-img{aspect-ratio:4/3;object-fit:contain;background:#edf2f7;padding:14px}
+
+/* Certificates */
+.sx-cert{margin:0}
+.sx-cert a{display:block;border-radius:var(--gx-radius);overflow:hidden;border:1px solid var(--gx-line);background:#fff;box-shadow:0 18px 40px -26px rgba(15,34,64,.45);transition:transform .3s var(--gx-ease),box-shadow .3s}
+.sx-cert a:hover{transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(15,34,64,.55)}
+.sx-cert img{width:100%;height:auto}
+.sx-cert figcaption{padding:12px 4px 0;color:var(--gx-muted);font-size:.9rem;line-height:1.5}
+.sx-cert figcaption strong{display:block;color:var(--gx-navy);font-family:"Poppins",sans-serif;font-size:1rem}
