@@ -87,3 +87,38 @@
     });
   });
 })();
+
+/* Case studies: tabs (Web projects / Graphics) and graphics cases from projects.json */
+(function () {
+  var tabs = document.querySelectorAll(".cs-tablist [data-tab]");
+  if (!tabs.length) return;
+  function show(name) {
+    if (name !== "graphics") name = "web";
+    tabs.forEach(function (t) { t.setAttribute("aria-selected", t.dataset.tab === name ? "true" : "false"); });
+    document.getElementById("cs-web").hidden = name !== "web";
+    document.getElementById("cs-graphics").hidden = name !== "graphics";
+    document.querySelectorAll("#cs-web .sx-reveal, #cs-graphics .sx-reveal").forEach(function (e) { e.classList.add("sx-in"); });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () { history.replaceState(null, "", "#" + t.dataset.tab); show(t.dataset.tab); });
+  });
+  show(location.hash.replace("#", ""));
+  window.addEventListener("hashchange", function () { show(location.hash.replace("#", "")); });
+
+  function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
+  var box = document.getElementById("sx-gfx-cases");
+  fetch("../assets/graphics/projects.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (data) {
+    var list = (data && data.projects) || [];
+    if (!list.length) { box.innerHTML = '<p class="sx-note">Graphics projects will appear here soon.</p>'; return; }
+    box.innerHTML = list.map(function (p) {
+      var n = p.pages.length;
+      var desc = p.description || (esc(p.category) + " design, " + n + (n === 1 ? " page." : " pages."));
+      var tools = (p.tools || []).map(esc).join(", ");
+      var img = "../assets/graphics/" + encodeURIComponent(p.slug) + "/" + p.pages[0].thumb;
+      return '<article class="sx-case sx-in"><div class="sx-case-shot"><img class="sx-gfx-img" src="' + img + '" alt="' + esc(p.title) + ' preview" loading="lazy"></div>' +
+        '<div><span class="sx-tag">' + esc(p.category) + '</span><h2>' + esc(p.title) + '</h2><p>' + esc(desc) + '</p>' +
+        '<dl>' + (p.year ? '<dt>Year</dt><dd>' + esc(p.year) + '</dd>' : '') + '<dt>Pages</dt><dd>' + n + '</dd>' + (tools ? '<dt>Made with</dt><dd>' + tools + '</dd>' : '') + '</dl>' +
+        '<a class="sx-link" href="graphics.html#' + encodeURIComponent(p.slug) + '">View the full project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>';
+    }).join("");
+  }).catch(function () { box.innerHTML = '<p class="sx-note">Could not load the graphics projects. Please open the <a href="graphics.html">Graphics page</a>.</p>'; });
+})();
