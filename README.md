@@ -1,7 +1,7 @@
 # Arthur Creations
 
 Portfolio website for Arthur Creations: web development, graphic design and video work.
-Built with plain HTML, Tailwind CSS and a little JavaScript. Hosted on GitHub Pages.
+Built with plain HTML, CSS and a little JavaScript. Hosted on GitHub Pages.
 
 ## Pages
 
@@ -9,13 +9,13 @@ Built with plain HTML, Tailwind CSS and a little JavaScript. Hosted on GitHub Pa
 | --- | --- |
 | Splash screen (opens first) | `index.html` |
 | Home | `pages/homepage.html` |
-| Web portfolio | `pages/portfolio_gallery.html` |
+| Web projects | `pages/portfolio_gallery.html` |
 | **Graphics portfolio** | `pages/graphics.html` |
 | Owner upload page (private) | `pages/upload.html` |
 | Services and pricing | `pages/services_pricing.html` |
 | Video showcase | `pages/video_showcase_theater.html` |
 | About | `pages/about_process.html` |
-| Success stories | `pages/client_success_hub.html` |
+| Case studies | `pages/client_success_hub.html` |
 
 ## Adding graphics (PDF to gallery)
 
@@ -51,7 +51,7 @@ Visitors cannot upload anything. Without the token the page does nothing. If a t
 
 ## Editing styles (Tailwind)
 
-The main pages use compiled Tailwind CSS in `css/main.css`.
+All pages share `css/site.css` (header, footer, sections) and `js/site.js` (menu, price calculator). The old compiled Tailwind file `css/main.css` is still loaded by the Graphics and Upload pages.
 
 ```bash
 npm install
