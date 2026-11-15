@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /pages/upload.html
+Sitemap: https://shonthur.github.io/Arthur-Creations/sitemap.xml

@@ -1,0 +1,22 @@
+.cv-bar{background:#fff;border-bottom:1px solid var(--gx-line);padding:14px 0}
+.cv-actions{display:flex;gap:10px;justify-content:flex-end}
+.cv-sheet{max-width:860px;margin:0 auto;background:#fff;border:1px solid var(--gx-line);border-radius:var(--gx-radius);padding:48px;box-shadow:0 24px 50px -30px rgba(15,34,64,.4)}
+.cv-head{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-bottom:22px;border-bottom:3px solid var(--gx-navy)}
+.sx-body .cv-head h1{font-size:2.2rem;color:var(--gx-navy)}
+.cv-head p{margin-top:6px;color:var(--gx-blue);font-weight:600}
+.cv-head ul{list-style:none;margin:0;padding:0;text-align:right;font-size:.92rem;color:var(--gx-muted);line-height:1.8}
+.cv-head a{text-decoration:none}
+.cv-sec{margin-top:26px}
+.sx-body .cv-sec h2{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gx-blue);border-bottom:1px solid var(--gx-line);padding-bottom:6px;margin-bottom:12px}
+.cv-sec p{color:var(--gx-muted);line-height:1.75}
+.cv-job{margin-bottom:16px}
+.cv-row{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.sx-body .cv-row h3{font-size:1.02rem}
+.cv-row span{font-size:.85rem;color:var(--gx-muted);white-space:nowrap}
+.cv-sub{font-style:italic;font-size:.92rem;margin:2px 0 6px}
+.cv-job ul,.cv-plain{margin:6px 0 0;padding-left:20px;color:var(--gx-muted);line-height:1.7;font-size:.94rem}
+.sx-open{display:inline-flex;align-items:center;gap:8px;font:600 .8rem "Inter",sans-serif;letter-spacing:.04em;color:#fff;background:rgba(56,161,105,.22);border:1px solid rgba(56,161,105,.5);border-radius:999px;padding:6px 14px;margin-bottom:18px}
+.sx-open i{width:8px;height:8px;border-radius:50%;background:#48bb78;box-shadow:0 0 0 0 rgba(72,187,120,.7);animation:sxping 2s infinite}
+@keyframes sxping{70%{box-shadow:0 0 0 9px rgba(72,187,120,0)}100%{box-shadow:0 0 0 0 rgba(72,187,120,0)}}
+@media (max-width:620px){.cv-sheet{padding:26px 20px}.cv-head ul{text-align:left}.cv-row{flex-direction:column;gap:0}}
+@media print{.sx-header,.sx-footer,.cv-bar,.sx-skip{display:none!important}.sx-body{background:#fff}.sx-section{padding:0!important}.cv-sheet{border:0;box-shadow:none;padding:0}@page{margin:16mm}}

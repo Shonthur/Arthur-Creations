@@ -72,3 +72,18 @@
     update();
   }
 })();
+
+/* YouTube videos load only after a click (faster page, more privacy) */
+(function () {
+  document.querySelectorAll("[data-yt]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + btn.dataset.yt + "?autoplay=1&rel=0&modestbranding=1";
+      f.title = "Video player";
+      f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+      f.allowFullscreen = true;
+      f.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      btn.parentNode.replaceChild(f, btn);
+    });
+  });
+})();
