@@ -25,6 +25,8 @@ background:radial-gradient(800px 500px at 80% 10%,rgba(49,130,206,.22),transpare
 .mk{height:clamp(86px,17vw,150px);flex:none}
 .mk svg{height:100%;width:auto;display:block;overflow:visible}
 .mk path{fill:#fff}
+.av-txclip{overflow:hidden;padding:6px 8px 6px 0;margin:-6px 0}
+.stage .mk{position:relative;z-index:1}
 .tx{font-family:"Montserrat",sans-serif;line-height:1}
 .tx b{display:block;font-weight:700;font-size:clamp(2rem,8.6vw,4.4rem);letter-spacing:.03em;opacity:0;animation:rise .9s cubic-bezier(.22,.61,.36,1) 1.15s forwards}
 .tx i{display:block;font-style:normal;font-weight:500;font-size:clamp(.5rem,2.3vw,1.13rem);letter-spacing:.14em;margin-top:.7em;opacity:0;animation:rise .9s cubic-bezier(.22,.61,.36,1) 1.45s forwards}
@@ -37,7 +39,7 @@ background:radial-gradient(800px 500px at 80% 10%,rgba(49,130,206,.22),transpare
 .av-leg{animation:leg .9s cubic-bezier(.22,.61,.36,1) .15s both}
 .av-swoosh{animation:swoosh 1.2s cubic-bezier(.22,.61,.36,1) .35s both,float 2.4s ease-in-out 1.6s infinite}
 .bar{position:fixed;left:50%;bottom:64px;width:min(240px,60vw);height:3px;transform:translateX(-50%);background:rgba(255,255,255,.14);border-radius:3px;overflow:hidden;opacity:0;animation:rise .6s ease 1.8s forwards}
-.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#3182ce,#38a169);animation:fill 3s linear 1.8s forwards}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#3182ce,#38a169);animation:fill 3.5s linear 1.8s forwards}
 @keyframes fill{to{width:100%}}
 .skip{position:fixed;top:22px;right:22px;color:#fff;text-decoration:none;font-weight:500;font-size:.9rem;padding:10px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);opacity:0;animation:rise .6s ease 1s forwards;transition:background .2s}
 .skip:hover,.skip:focus-visible{background:rgba(255,255,255,.22)}
@@ -46,13 +48,14 @@ background:radial-gradient(800px 500px at 80% 10%,rgba(49,130,206,.22),transpare
 </head>
 <body>
 <a class="skip" href="pages/homepage.html">Enter site</a>
-<div class="stage" role="img" aria-label="Avalon Corporate Solutions">
+<div class="stage" data-avlogo role="img" aria-label="Avalon Corporate Solutions">
   <div class="mk"><svg class="av-mark" viewBox="0 0 337.5 319.8" fill-rule="evenodd" aria-hidden="true" focusable="false"><path class="av-peak" d="M168.8 0.0 L168.0 0.0 L167.2 0.8 L122.5 88.8 L74.5 181.5 L74.5 182.8 L75.2 182.8 L90.2 175.2 L103.2 170.2 L126.0 162.5 L130.2 161.5 L150.0 155.0 L150.8 154.2 L167.5 120.2 L168.8 120.8 L178.5 140.5 L179.5 142.0 L180.5 142.2 L195.0 134.5 L206.8 126.8 L218.2 118.0 L225.5 111.2 L225.5 109.8Z"/><path class="av-swoosh" d="M330.8 19.2 L329.8 19.0 L326.5 21.0 L323.0 22.5 L307.0 31.2 L287.5 41.0 L259.5 56.0 L254.0 58.5 L246.2 63.0 L233.8 69.5 L233.2 70.2 L234.5 71.0 L246.5 73.5 L262.2 77.5 L264.0 78.2 L266.0 78.5 L266.8 79.0 L266.8 80.2 L259.2 90.8 L247.0 104.5 L238.5 113.0 L228.2 122.2 L222.0 127.5 L213.0 134.2 L202.8 141.0 L191.8 147.5 L180.8 153.0 L170.5 157.5 L149.2 166.0 L134.0 171.0 L124.8 173.5 L112.2 178.0 L109.2 178.8 L87.0 188.0 L75.2 194.0 L66.8 199.0 L58.8 204.5 L49.8 211.8 L43.0 218.0 L37.5 223.8 L32.0 230.2 L25.2 239.5 L20.0 248.0 L16.5 254.5 L12.8 262.8 L11.8 266.0 L10.2 268.8 L6.2 280.5 L2.8 295.0 L2.2 300.0 L0.5 309.0 L0.2 313.5 L1.0 313.0 L2.2 310.5 L5.2 302.8 L10.2 293.2 L16.8 282.2 L23.0 273.2 L30.0 264.8 L37.2 256.8 L46.0 248.5 L54.5 241.8 L60.0 237.8 L73.0 229.5 L81.5 224.8 L90.2 220.5 L116.5 209.5 L150.0 197.8 L162.5 192.5 L181.2 183.2 L197.2 173.5 L209.8 164.0 L221.5 153.5 L236.2 138.0 L236.8 138.2 L236.0 140.2 L230.8 147.5 L220.2 160.8 L216.2 165.2 L204.0 177.2 L193.2 186.0 L181.5 194.2 L170.8 200.5 L148.2 211.2 L132.5 217.5 L125.5 219.8 L124.2 220.5 L109.8 225.8 L102.5 228.8 L88.2 235.5 L78.5 240.5 L71.2 244.8 L62.8 250.2 L53.8 256.8 L37.8 270.2 L21.5 287.8 L12.2 299.8 L2.2 314.8 L0.0 318.8 L0.0 319.5 L1.0 320.0 L70.8 319.8 L71.8 318.2 L73.0 311.8 L75.2 304.8 L78.5 297.8 L82.2 291.0 L89.0 281.8 L94.0 276.5 L100.5 270.8 L109.5 264.5 L122.8 257.5 L165.0 241.2 L176.5 236.0 L190.0 229.0 L199.0 223.8 L212.5 214.8 L222.2 207.0 L231.8 198.8 L244.8 185.5 L254.0 175.0 L262.8 164.2 L274.8 147.5 L292.0 120.5 L300.5 105.5 L301.5 105.2 L302.8 106.5 L309.2 115.5 L321.5 131.0 L322.0 130.5 L322.0 126.2 L323.0 117.5 L324.0 100.5 L325.0 92.8 L326.8 66.8 L327.8 58.2 L328.0 51.5 L328.8 45.8Z"/><path class="av-leg" d="M262.0 180.8 L253.5 190.8 L238.2 206.2 L228.2 215.0 L220.2 221.0 L218.8 222.8 L248.2 281.8 L255.5 294.2 L262.8 303.8 L271.0 310.8 L279.2 315.2 L288.5 318.2 L297.8 319.8 L337.5 319.8 L338.0 319.0 L315.0 277.8 L263.8 182.0 L262.8 180.8Z"/></svg></div>
-  <div class="tx"><b>AVALON</b><i>CORPORATE SOLUTIONS</i></div>
+  <div class="av-txclip"><div class="tx av-tx"><b>AVALON</b><i>CORPORATE SOLUTIONS</i></div></div>
 </div>
 <div class="bar" aria-hidden="true"><span></span></div>
 <script>
-setTimeout(function () { window.location.replace("pages/homepage.html"); }, 4900);
+setTimeout(function () { window.location.replace("pages/homepage.html"); }, 5400);
 </script>
+<script src="js/logo.js"></script>
 </body>
 </html>
