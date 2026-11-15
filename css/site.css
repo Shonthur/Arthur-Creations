@@ -269,7 +269,9 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 
 /* ---------- Avalon logo + animation ---------- */
 :root{--sx-ink:#142a37}
-.av-lock{color:var(--sx-ink);gap:12px}
+.av-lock{color:var(--sx-ink);gap:0}
+.av-mk{position:relative;z-index:1}
+.av-txclip{overflow:hidden;padding:4px 6px 4px 12px;margin:-4px 0}
 .av-mk{display:block;height:38px;flex:none}
 .av-mark{display:block;height:100%;width:auto;overflow:visible}
 .av-mark path{fill:currentColor}
