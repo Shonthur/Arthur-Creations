@@ -321,3 +321,26 @@ a.sx-proj-shot{display:block;text-decoration:none;color:inherit}
 .sx-yt-btn:focus-visible{outline:3px solid var(--gx-blue);outline-offset:3px}
 .sx-product>*{min-width:0}
 .sx-product-shot img{display:block;width:100%;height:auto;max-width:100%}
+
+/* Phone-format video showcase */
+.sx-phone-show{display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center;max-width:980px;margin:0 auto}
+.sx-phone-show h2{font-size:clamp(1.6rem,3.4vw,2.3rem);margin:8px 0 14px}
+.sx-phone-show p{color:var(--gx-muted);line-height:1.75}
+.sx-ticks{list-style:none;margin:18px 0 0;padding:0;color:var(--gx-muted);font-size:.96rem}
+.sx-ticks li{position:relative;padding:6px 0 6px 26px}
+.sx-ticks li::before{content:"";position:absolute;left:0;top:13px;width:12px;height:7px;border-left:2px solid var(--gx-green);border-bottom:2px solid var(--gx-green);transform:rotate(-45deg)}
+.sx-phone{width:min(310px,76vw);padding:12px;border-radius:46px;background:linear-gradient(160deg,#1f2937,#0b1220);box-shadow:0 40px 70px -30px rgba(15,34,64,.7),inset 0 0 0 2px rgba(255,255,255,.08);position:relative;justify-self:center}
+.sx-phone::before{content:"";position:absolute;top:20px;left:50%;width:70px;height:6px;margin-left:-35px;border-radius:6px;background:rgba(255,255,255,.18);z-index:2;pointer-events:none}
+.sx-phone .sx-yt{max-width:none;margin:0}
+.sx-phone .sx-yt-btn,.sx-phone .sx-yt iframe{aspect-ratio:9/16;border-radius:34px;box-shadow:none}
+.sx-phone .sx-yt-btn img{object-fit:cover}
+.sx-phone .sx-yt-play{width:64px;height:64px}
+@media (max-width:860px){.sx-phone-show{grid-template-columns:1fr;gap:36px}.sx-phone-show>div:first-child{text-align:left}}
+
+/* Case study tabs */
+.cs-tabs{background:#fff;border-bottom:1px solid var(--gx-line);position:sticky;top:68px;z-index:40}
+.cs-tablist{display:flex;gap:6px;padding:10px 0}
+.cs-tablist button{appearance:none;border:0;background:none;font:600 .92rem "Inter",sans-serif;color:var(--gx-muted);padding:10px 20px;border-radius:999px;cursor:pointer;transition:all .2s}
+.cs-tablist button:hover{background:#edf2f7;color:var(--gx-navy)}
+.cs-tablist button[aria-selected="true"]{background:var(--gx-navy);color:#fff}
+.sx-case-shot img.sx-gfx-img{aspect-ratio:4/3;object-fit:contain;background:#edf2f7;padding:14px}
