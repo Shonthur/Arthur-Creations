@@ -1,6 +1,6 @@
-# Arthur Creations
+# Avalon Corporate Solutions
 
-Portfolio website for Arthur Creations: web development, graphic design and video work.
+Portfolio website for Avalon Corporate Solutions (formerly Arthur Creations): web development, graphic design and video work.
 Built with plain HTML, CSS and a little JavaScript. Hosted on GitHub Pages.
 
 ## Pages
@@ -74,4 +74,4 @@ scripts/              build_graphics.py
 index.html            splash screen
 ```
 
-Built by Arthur Creations.
+Built by Avalon Corporate Solutions.
