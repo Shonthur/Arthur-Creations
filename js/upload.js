@@ -200,11 +200,15 @@
     $('up-step-connect').hidden = true;
     $('up-step-upload').hidden = false;
     $('up-who').textContent = name || (OWNER + '/' + REPO);
+    window.GX_TOKEN = token;
+    document.dispatchEvent(new Event('gx-connected'));
     loadCategories();
   }
 
   function forgetToken() {
     token = '';
+    window.GX_TOKEN = '';
+    document.dispatchEvent(new Event('gx-disconnected'));
     try { localStorage.removeItem(TOKEN_KEY); } catch (e) { /* ignore */ }
   }
 
