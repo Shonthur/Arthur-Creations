@@ -118,7 +118,7 @@
       return '<article class="sx-case sx-in"><div class="sx-case-shot"><img class="sx-gfx-img" src="' + img + '" alt="' + esc(p.title) + ' preview" loading="lazy"></div>' +
         '<div><span class="sx-tag">' + esc(p.category) + '</span><h2>' + esc(p.title) + '</h2><p>' + esc(desc) + '</p>' +
         '<dl>' + (p.year ? '<dt>Year</dt><dd>' + esc(p.year) + '</dd>' : '') + '<dt>Pages</dt><dd>' + n + '</dd>' + (tools ? '<dt>Made with</dt><dd>' + tools + '</dd>' : '') + '</dl>' +
-        '<a class="sx-link" href="graphics.html#' + encodeURIComponent(p.slug) + '">View the full project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>';
+        '<a class="sx-link" href="graphics.html#' + encodeURIComponent(p.slug) + '">View the full project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><div class="sx-actions" style="margin-top:14px"><a class="sx-btn sx-btn-sm" href="start_project.html?service=A%20graphic%20design%20(flyer%2C%20brochure%2C%20calendar...)">Request a similar design</a></div></div></article>';
     }).join("");
   }).catch(function () { box.innerHTML = '<p class="sx-note">Could not load the graphics projects. Please open the <a href="graphics.html">Graphics page</a>.</p>'; });
 })();
