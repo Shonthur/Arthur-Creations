@@ -140,4 +140,3 @@ html[data-theme="dark"] .gx-card-media{background:#1b1b1e!important}
 html[data-theme="dark"] .gx-pages-chip{background:rgba(12,12,13,.82);color:#fff;border:1px solid var(--gx-line)}
 html[data-theme="dark"] .gx-card-tag,html[data-theme="dark"] .gx-cat-chip{background:rgba(12,12,13,.82);color:#ffb454}
 html[data-theme="dark"] .gx-badge{background:rgba(12,12,13,.82);color:#ffb454;border:1px solid var(--gx-line)}
-@media (max-width:960px){html[data-theme="dark"] .sx-hero .sx-hero-grid::before{display:none}}

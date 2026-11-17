@@ -397,14 +397,3 @@ html[data-theme="dark"] .sx-moon{display:none}
 .sx-strip li a:hover{color:var(--gx-navy);border-color:var(--gx-blue);transform:translateY(-2px)}
 @media (max-width:860px){.sx-strip .sx-wrap{grid-template-columns:1fr}.sx-strip ul{grid-column:1;grid-row:auto;margin-top:12px}.sx-strip p{max-width:none}}
 .sx-nav-right{display:flex;align-items:center;gap:10px;flex:none}
-/* cartoon illustrations */
-.sx-cartoon-art{min-height:0;display:flex;align-items:center;justify-content:center;margin-top:0}
-.sx-cartoon{display:block;width:100%;max-width:440px;height:auto}
-.sx-cartoon-art .sx-bubble{z-index:2}
-@media (max-width:960px){.sx-cartoon{max-width:340px}.sx-cartoon-art{min-height:0}}
-@media (max-width:620px){.sx-cartoon{max-width:280px}}
-.gx-hero-wrap{position:relative}
-.gx-cartoon{position:absolute;right:0;top:50%;transform:translateY(-50%);width:min(380px,36%);height:auto;pointer-events:none}
-@media (max-width:960px){.gx-cartoon{display:none}}
-.sx-hero-art img.sx-cartoon{aspect-ratio:400/360;object-fit:contain;object-position:center}
-.sx-eyebrow .sx-open{margin-right:12px}
