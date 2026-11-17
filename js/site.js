@@ -122,3 +122,25 @@
     }).join("");
   }).catch(function () { box.innerHTML = '<p class="sx-note">Could not load the graphics projects. Please open the <a href="graphics.html">Graphics page</a>.</p>'; });
 })();
+
+/* Light / dark theme toggle (remembered in this browser) */
+(function () {
+  var root = document.documentElement;
+  var meta = document.querySelector('meta[name="theme-color"]');
+  function apply(t) {
+    if (t === "dark") root.setAttribute("data-theme", "dark"); else root.removeAttribute("data-theme");
+    if (meta) meta.setAttribute("content", t === "dark" ? "#0b0b0d" : "#1a365d");
+    document.querySelectorAll(".sx-theme").forEach(function (b) {
+      b.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      b.setAttribute("aria-pressed", t === "dark" ? "true" : "false");
+    });
+  }
+  apply(root.getAttribute("data-theme") === "dark" ? "dark" : "light");
+  document.querySelectorAll(".sx-theme").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      apply(next);
+      try { localStorage.setItem("sx-theme", next); } catch (e) {}
+    });
+  });
+})();

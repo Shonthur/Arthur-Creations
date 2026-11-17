@@ -1,0 +1,142 @@
+/* Dark theme: near-black surfaces with orange accents.
+   Applies when <html data-theme="dark">. Toggle is in the header. */
+
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --gx-navy:#f4f4f5;--gx-navy-deep:#09090a;--gx-blue:#f28c0f;--gx-sky:#ffb454;--gx-green:#34d399;
+  --gx-bg:#0c0c0d;--gx-line:rgba(255,255,255,.1);--gx-text:#e8e8ea;--gx-muted:#a4a4ac;
+  --d-surface:#151517;--d-surface2:#1e1e21;--d-orange:#f28c0f;--d-orange-hi:#ffa238;--d-soft:rgba(242,140,15,.14);
+  --d-grid:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+}
+html[data-theme="dark"] body.sx-body,
+html[data-theme="dark"] body.gx-body{
+  background-color:#0c0c0d;background-image:var(--d-grid);background-size:64px 64px;color:var(--gx-text)}
+
+/* header */
+html[data-theme="dark"] .sx-header{background:rgba(12,12,13,.86);border-bottom-color:var(--gx-line)}
+html[data-theme="dark"] .av-lock{color:#fff}
+html[data-theme="dark"] .sx-links a{color:var(--gx-muted)}
+html[data-theme="dark"] .sx-links a:hover{color:#fff;background:var(--d-surface2)}
+html[data-theme="dark"] .sx-links a[aria-current="page"]{color:var(--d-orange);background:var(--d-soft)}
+html[data-theme="dark"] .sx-burger,html[data-theme="dark"] .sx-theme{background:var(--d-surface2);color:#fff;border-color:var(--gx-line)}
+html[data-theme="dark"] .sx-menu{background:#0f0f11}
+html[data-theme="dark"] .sx-menu a{color:var(--gx-muted);border-bottom-color:var(--gx-line)}
+html[data-theme="dark"] .sx-menu a[aria-current="page"]{color:var(--d-orange)}
+html[data-theme="dark"] .sx-skip{background:#222;color:#fff}
+
+/* buttons: orange primary, dark ghost, outline */
+html[data-theme="dark"] .sx-btn,html[data-theme="dark"] .sx-body a.sx-btn,
+html[data-theme="dark"] .sx-body a.sx-btn-light,html[data-theme="dark"] .gx-btn-primary,html[data-theme="dark"] .up-btn{
+  background:var(--d-orange);border-color:var(--d-orange);color:#101010}
+html[data-theme="dark"] .sx-btn:hover,html[data-theme="dark"] .sx-body a.sx-btn-light:hover,html[data-theme="dark"] .gx-btn-primary:hover,html[data-theme="dark"] .up-btn:hover:not([disabled]){
+  background:var(--d-orange-hi);border-color:var(--d-orange-hi);color:#101010;box-shadow:0 12px 26px -12px rgba(242,140,15,.7)}
+html[data-theme="dark"] .sx-body a.sx-btn-ghost,html[data-theme="dark"] .gx-btn-ghost,html[data-theme="dark"] .up-btn-ghost{
+  background:var(--d-surface2);border-color:var(--gx-line);color:#fff}
+html[data-theme="dark"] .sx-btn-ghost:hover,html[data-theme="dark"] .gx-btn-ghost:hover,html[data-theme="dark"] .up-btn-ghost:hover:not([disabled]){background:#27272b;color:#fff}
+html[data-theme="dark"] .sx-body a.sx-btn-outline{background:transparent;border-color:rgba(255,255,255,.28);color:#fff}
+html[data-theme="dark"] .sx-body a.sx-btn-outline:hover{background:rgba(255,255,255,.08)}
+html[data-theme="dark"] .sx-link,html[data-theme="dark"] .sx-note a,html[data-theme="dark"] .up-steps a,html[data-theme="dark"] .up-link{color:var(--d-orange)}
+
+/* hero, bands, product block */
+html[data-theme="dark"] .sx-hero,html[data-theme="dark"] .gx-hero,html[data-theme="dark"] .up-hero{
+  background:radial-gradient(900px 420px at 85% -10%,rgba(242,140,15,.24),transparent 60%),radial-gradient(700px 380px at 0% 110%,rgba(242,140,15,.08),transparent 60%),var(--d-grid),#0c0c0d;
+  background-size:auto,auto,64px 64px,auto;border-bottom:1px solid var(--gx-line)}
+html[data-theme="dark"] .sx-hero::after,html[data-theme="dark"] .gx-hero::after{border-color:rgba(255,255,255,.08);box-shadow:0 0 0 38px rgba(255,255,255,.02),0 0 0 76px rgba(255,255,255,.012)}
+html[data-theme="dark"] .sx-band{background:radial-gradient(700px 320px at 90% -20%,rgba(242,140,15,.22),transparent 60%),var(--d-grid),#111113;background-size:auto,64px 64px,auto;border-top:1px solid var(--gx-line)}
+html[data-theme="dark"] .sx-product{background:radial-gradient(700px 320px at 95% -10%,rgba(242,140,15,.2),transparent 60%),#151517;border:1px solid var(--gx-line);box-shadow:0 30px 60px -34px rgba(0,0,0,.9)}
+html[data-theme="dark"] .sx-product li::before{border-color:var(--d-orange)}
+html[data-theme="dark"] .sx-abhero{background:radial-gradient(800px 380px at 90% 0%,rgba(242,140,15,.16),transparent 60%),var(--d-grid),#0c0c0d;background-size:auto,64px 64px,auto}
+html[data-theme="dark"] .sx-abpill{background:var(--d-soft);color:var(--d-orange)}
+html[data-theme="dark"] .sx-abhero h1 span{background:linear-gradient(90deg,#ffb454,#f28c0f);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+html[data-theme="dark"] .sx-hero h1 em{color:var(--d-orange)}
+/* coloured dots like the reference */
+.sx-hero .sx-hero-grid{position:relative}
+html[data-theme="dark"] .sx-hero .sx-hero-grid::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 62% 6%,#22c55e 0 5px,transparent 6px),radial-gradient(circle at 78% 2%,transparent 0 5px,#3b82f6 6px 7.5px,transparent 8px),radial-gradient(circle at 90% 22%,#ec4899 0 5px,transparent 6px)}
+
+/* sections and surfaces */
+html[data-theme="dark"] .sx-section-white{background:#101012;border-color:var(--gx-line)}
+html[data-theme="dark"] .sx-strip{background:#0f0f11;border-bottom-color:var(--gx-line)}
+html[data-theme="dark"] .sx-card,html[data-theme="dark"] .sx-proj,html[data-theme="dark"] .sx-steps li,html[data-theme="dark"] .sx-video,
+html[data-theme="dark"] .sx-table,html[data-theme="dark"] .sx-case-shot,html[data-theme="dark"] .sx-cert a,html[data-theme="dark"] .sx-badges,
+html[data-theme="dark"] .gx-card,html[data-theme="dark"] .up-card,html[data-theme="dark"] .up-item{background:var(--d-surface);border-color:var(--gx-line);box-shadow:none}
+html[data-theme="dark"] .sx-card:hover,html[data-theme="dark"] .sx-proj:hover,html[data-theme="dark"] .gx-card:hover,html[data-theme="dark"] .gx-card:focus-visible{border-color:rgba(242,140,15,.55);box-shadow:0 22px 40px -22px rgba(242,140,15,.35)}
+html[data-theme="dark"] .sx-icon{background:var(--d-soft);color:var(--d-orange)}
+html[data-theme="dark"] .sx-c-wa .sx-icon{background:rgba(37,211,102,.14);color:#25d366}
+html[data-theme="dark"] .sx-c-tg .sx-icon{background:rgba(42,171,238,.14);color:#2aabee}
+html[data-theme="dark"] .sx-tag,html[data-theme="dark"] .gx-chip{background:var(--d-soft);color:#ffb454}
+html[data-theme="dark"] .gx-chip.gx-chip-green{background:rgba(52,211,153,.14);color:#6ee7b7}
+html[data-theme="dark"] .sx-chips span,html[data-theme="dark"] .sx-skill-list span{background:var(--d-surface2);color:var(--gx-text)}
+html[data-theme="dark"] .sx-card li::before,html[data-theme="dark"] .sx-ticks li::before{border-color:var(--d-orange)}
+html[data-theme="dark"] .sx-steps li::before{color:rgba(242,140,15,.5)}
+html[data-theme="dark"] .sx-strip li a,html[data-theme="dark"] .sx-strip li span{background:var(--d-surface);color:var(--gx-muted)}
+html[data-theme="dark"] .sx-strip li a:hover{color:#fff;border-color:var(--d-orange)}
+html[data-theme="dark"] .sx-table th{background:var(--d-surface2);color:#fff}
+html[data-theme="dark"] .sx-table td:last-child{color:var(--d-orange)}
+html[data-theme="dark"] .sx-timeline li::before{background:#0c0c0d;border-color:var(--d-orange)}
+html[data-theme="dark"] .sx-timeline time{color:var(--d-orange)}
+html[data-theme="dark"] .sx-case-shot img.sx-gfx-img{background:var(--d-surface2)}
+html[data-theme="dark"] .sx-case dt{color:#fff}
+
+/* pricing + calculator */
+html[data-theme="dark"] .sx-price.sx-featured{border-color:var(--d-orange);box-shadow:0 18px 44px -26px rgba(242,140,15,.6)}
+html[data-theme="dark"] .sx-price .sx-badge{background:var(--d-orange);color:#101010}
+html[data-theme="dark"] .sx-amount{color:#fff}
+html[data-theme="dark"] .sx-field select,html[data-theme="dark"] .up-card input[type="text"],html[data-theme="dark"] .up-card input[type="password"],html[data-theme="dark"] .up-card textarea{background:var(--d-surface2);color:var(--gx-text);border-color:var(--gx-line)}
+html[data-theme="dark"] .sx-field select:focus,html[data-theme="dark"] .up-card input:focus,html[data-theme="dark"] .up-card textarea:focus{border-color:var(--d-orange);box-shadow:0 0 0 3px rgba(242,140,15,.2)}
+html[data-theme="dark"] .sx-checks input{accent-color:var(--d-orange)}
+html[data-theme="dark"] .sx-total{background:#17171a;border:1px solid rgba(242,140,15,.4)}
+html[data-theme="dark"] .sx-total .sx-sum{color:var(--d-orange)}
+
+/* tabs, about, contact */
+html[data-theme="dark"] .cs-tabs{background:rgba(12,12,13,.92);border-bottom-color:var(--gx-line)}
+html[data-theme="dark"] .cs-tablist button{color:var(--gx-muted)}
+html[data-theme="dark"] .cs-tablist button:hover{background:var(--d-surface2);color:#fff}
+html[data-theme="dark"] .cs-tablist button[aria-selected="true"]{background:var(--d-orange);color:#101010}
+html[data-theme="dark"] .sx-social a{background:var(--d-surface2)}
+html[data-theme="dark"] .sx-social a:hover{background:var(--d-orange);color:#101010}
+html[data-theme="dark"] .sx-contact .sx-social a,html[data-theme="dark"] .sx-body .sx-contact~.sx-social a{background:var(--d-surface2)!important}
+html[data-theme="dark"] .sx-connect>span{color:rgba(255,255,255,.6)}
+html[data-theme="dark"] .sx-open{background:rgba(242,140,15,.14);border-color:rgba(242,140,15,.45);color:#ffd9a3}
+
+/* footer */
+html[data-theme="dark"] .sx-footer{background:#080809;border-top:1px solid var(--gx-line)}
+
+/* CV: the sheet stays a white paper */
+html[data-theme="dark"] .cv-bar{background:var(--d-surface);border-bottom-color:var(--gx-line)}
+html[data-theme="dark"] .cv-sheet{--gx-navy:#1a365d;--gx-text:#2d3748;--gx-muted:#4a5568;--gx-blue:#3182ce;--gx-line:#e2e8f0;background:#fff;color:#2d3748}
+html[data-theme="dark"] .cv-sheet .sx-skill-list span{background:#e6eef8;color:#1a365d}
+
+/* graphics gallery */
+html[data-theme="dark"] .gx-filterbar{background:rgba(12,12,13,.9);border-bottom-color:var(--gx-line)}
+html[data-theme="dark"] .gx-pill{background:var(--d-surface);color:var(--gx-muted)}
+html[data-theme="dark"] .gx-pill:hover{color:#fff;border-color:var(--d-orange)}
+html[data-theme="dark"] .gx-pill[aria-pressed="true"]{background:var(--d-orange);border-color:var(--d-orange);color:#101010}
+html[data-theme="dark"] .gx-card-art{background:#1e1e21}
+html[data-theme="dark"] .gx-card-title{color:#fff}
+html[data-theme="dark"] .gx-page{background:var(--d-surface);border-color:var(--gx-line);box-shadow:0 14px 28px -16px rgba(0,0,0,.8)}
+html[data-theme="dark"] .gx-back{color:var(--d-orange)}
+html[data-theme="dark"] .gx-eyebrow{color:var(--gx-sky)}
+
+/* upload page */
+html[data-theme="dark"] .up-drop{background:var(--d-surface2);border-color:rgba(255,255,255,.18)}
+html[data-theme="dark"] .up-drop:hover,html[data-theme="dark"] .up-drop.up-over{background:#26211a;border-color:var(--d-orange)}
+html[data-theme="dark"] .up-item-done{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.3)}
+html[data-theme="dark"] .up-steps code{background:var(--d-surface2)}
+html[data-theme="dark"] .up-x{background:var(--d-surface2);color:var(--gx-muted)}
+html[data-theme="dark"] .up-bar{background:var(--d-surface2)}
+html[data-theme="dark"] .up-bar i{background:linear-gradient(90deg,#f28c0f,#ffb454)}
+html[data-theme="dark"] .up-msg.up-ok,html[data-theme="dark"] .up-status.up-ok{color:#6ee7b7}
+html[data-theme="dark"] .up-msg.up-bad,html[data-theme="dark"] .up-status.up-bad{color:#fca5a5}
+
+/* the images themselves stay true to colour; soften glare slightly */
+html[data-theme="dark"] .sx-proj-shot{background:#1e1e21;border-bottom-color:var(--gx-line)}
+
+/* inline navy gradients written in the HTML */
+html[data-theme="dark"] [style*="#1a365d"]{background:radial-gradient(500px 240px at 100% 0%,rgba(242,140,15,.2),transparent 60%),#151517!important;border:1px solid var(--gx-line)!important}
+
+/* graphics cards: media tint + chips */
+html[data-theme="dark"] .gx-card-media{background:#1b1b1e!important}
+html[data-theme="dark"] .gx-pages-chip{background:rgba(12,12,13,.82);color:#fff;border:1px solid var(--gx-line)}
+html[data-theme="dark"] .gx-card-tag,html[data-theme="dark"] .gx-cat-chip{background:rgba(12,12,13,.82);color:#ffb454}
+html[data-theme="dark"] .gx-badge{background:rgba(12,12,13,.82);color:#ffb454;border:1px solid var(--gx-line)}
