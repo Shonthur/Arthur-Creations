@@ -108,19 +108,57 @@
     form.addEventListener('submit', function (e) { e.preventDefault(); go('wa'); });
   }
 
-  /* ---- testimonials ---- */
+  /* ---- testimonials (reviews file + approved online reviews) ---- */
   var tbox = $('#ex-testi-list');
   if (tbox) {
-    getJSON('../assets/testimonials.json').then(function (d) {
-      var list = (d && d.testimonials) || [];
+    var fromFile = getJSON('../assets/testimonials.json').then(function (d) { return (d && d.testimonials) || []; }).catch(function () { return []; });
+    var fromWeb = (window.AVReviews && AVReviews.enabled()) ? AVReviews.approved().catch(function () { return []; }) : Promise.resolve([]);
+    Promise.all([fromWeb, fromFile]).then(function (a) {
+      var list = a[0].concat(a[1]);
       if (!list.length) return;
       tbox.innerHTML = list.map(function (t) {
         var ini = (t.name || '?').split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join('').toUpperCase();
-        var av = t.photo ? '<img src="' + esc(t.photo) + '" alt="" loading="lazy">' : esc(ini);
+        var av = t.photo ? '<img src="' + esc(t.photo) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : esc(ini);
         return '<figure class="ex-t"><blockquote>' + esc(t.message) + '</blockquote><figcaption class="ex-who"><span class="ex-av">' + av + '</span><span><strong>' + esc(t.name) + '</strong><small>' + esc(t.role || '') + '</small></span></figcaption></figure>';
       }).join('');
       var sec = $('#ex-testi'); if (sec) sec.hidden = false;
-    }).catch(function () { /* no reviews yet */ });
+    });
+  }
+
+  /* ---- review page: sign in with Google, then write the review ---- */
+  var rv = $('#rv-online');
+  if (rv && window.AVReviews && AVReviews.enabled()) {
+    rv.hidden = false;
+    var fb = $('#rv-fallback'); if (fb) fb.open = false;
+    var say = function (t, bad) { var m = $('#rv-msg'); m.textContent = t; m.style.color = bad ? '#e11d48' : ''; };
+    var cur = null;
+    var setUser = function (u) {
+      cur = u;
+      $('#rv-step1').hidden = !!u; $('#rv-step2').hidden = !u;
+      if (!u) return;
+      var a = $('#rv-av'); a.textContent = '';
+      if (u.photoURL) { var im = new Image(); im.src = u.photoURL; im.alt = ''; im.referrerPolicy = 'no-referrer'; a.appendChild(im); }
+      else a.textContent = (u.displayName || '?')[0].toUpperCase();
+      $('#rv-name').textContent = u.displayName || u.email;
+      AVReviews.mine(u.uid).then(function (m) {
+        var done = !!m;
+        $('#rv-form').hidden = done; $('#rv-done').hidden = !done;
+        if (m) $('#rv-done').textContent = m.status === 'approved' ? 'Your review is published on the website. Thank you!' : 'Thank you! Your review was received. It shows on the website after I check it.';
+      }).catch(function () { /* first review */ });
+    };
+    $('#rv-signin').addEventListener('click', function () { AVReviews.signIn().catch(function (e) { say('Sign-in did not finish. Please allow pop-ups and try again.', true); }); });
+    $('#rv-signout').addEventListener('click', function () { AVReviews.signOut(); });
+    AVReviews.onUser(setUser);
+    $('#rv-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target, text = f.elements.message.value.trim();
+      if (text.length < 10) { say('Please write a little more (at least 10 characters).', true); return; }
+      var btn = $('#rv-send'); btn.disabled = true; say('Sending...');
+      if (!cur) { btn.disabled = false; say('Please sign in first.', true); return; }
+      AVReviews.submit(cur, f.elements.role.value.trim(), text)
+        .then(function () { say(''); setUser(cur); })
+        .catch(function () { btn.disabled = false; say('Could not send your review. Please try again or use WhatsApp below.', true); });
+    });
   }
 
   /* ---- before / after slider ---- */
@@ -146,4 +184,14 @@
       cmp.hidden = false;
     }).catch(function () { /* no pairs yet */ });
   }
+})();
+
+/* ---- chat widget open/close ---- */
+(function () {
+  var open = document.getElementById('sx-chat-open'), panel = document.getElementById('sx-chat-panel'), x = document.getElementById('sx-chat-x');
+  if (!open || !panel) return;
+  function set(v) { panel.hidden = !v; open.setAttribute('aria-expanded', v ? 'true' : 'false'); open.hidden = v && window.innerWidth <= 620; if (v) panel.querySelector('a').focus(); else open.focus(); }
+  open.addEventListener('click', function () { set(panel.hidden); });
+  x.addEventListener('click', function () { set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) set(false); });
 })();
