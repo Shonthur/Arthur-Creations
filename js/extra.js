@@ -185,3 +185,13 @@
     }).catch(function () { /* no pairs yet */ });
   }
 })();
+
+/* ---- chat widget open/close ---- */
+(function () {
+  var open = document.getElementById('sx-chat-open'), panel = document.getElementById('sx-chat-panel'), x = document.getElementById('sx-chat-x');
+  if (!open || !panel) return;
+  function set(v) { panel.hidden = !v; open.setAttribute('aria-expanded', v ? 'true' : 'false'); open.hidden = v && window.innerWidth <= 620; if (v) panel.querySelector('a').focus(); else open.focus(); }
+  open.addEventListener('click', function () { set(panel.hidden); });
+  x.addEventListener('click', function () { set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) set(false); });
+})();

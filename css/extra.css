@@ -103,3 +103,28 @@ html[data-theme="dark"] .ex-av{color:#111}
 .gx-body .sx-head h2{color:var(--gx-navy)}
 .gx-body .sx-head p{color:var(--gx-muted)}
 [hidden]{display:none!important}
+
+/* chat widget (WhatsApp assistant) */
+.sx-chat{position:fixed;right:1.25rem;bottom:1.25rem;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.sx-chat-btn-open{display:inline-flex;align-items:center;gap:8px;padding:0 18px;height:3rem;border:0;border-radius:999px;background:#25d366;color:#073b1b;font:600 .95rem "Inter",sans-serif;cursor:pointer;box-shadow:0 14px 30px -10px rgba(37,211,102,.6);transition:transform .2s}
+.sx-chat-btn-open:hover{transform:translateY(-2px)}
+.sx-chat-btn-open svg{width:22px;height:22px}
+.sx-chat-panel{width:min(340px,calc(100vw - 2.5rem));background:var(--ex-surface);border:1px solid var(--gx-line);border-radius:18px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);overflow:hidden;animation:sxchat .25s ease}
+@keyframes sxchat{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.sx-chat-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#142a37;color:#fff;position:relative}
+.sx-chat-av{width:40px;height:40px;border-radius:50%;background:#1d3a4b;display:grid;place-items:center;flex:none}
+.sx-chat-av svg{width:24px;height:24px;fill:#fff}
+.sx-chat-head strong{display:block;font-size:.95rem}.sx-chat-head small{color:#9fd8b3;font-size:.78rem}
+.sx-chat-x{margin-left:auto;background:transparent;border:0;color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;padding:2px 8px;border-radius:8px}
+.sx-chat-x:hover{background:rgba(255,255,255,.12)}
+.sx-chat-body{padding:16px;display:grid;gap:10px}
+.sx-chat-msg{margin:0;background:var(--ex-surface2);color:var(--gx-text);padding:12px 14px;border-radius:4px 14px 14px 14px;line-height:1.5}
+.sx-chat-hours{margin:0;color:var(--gx-muted);font-size:.82rem}
+.sx-chat-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;border-radius:999px;background:#25d366;color:#073b1b;font-weight:600;text-decoration:none}
+.sx-chat-btn svg{width:22px;height:22px;flex:none}
+.sx-chat-btn:hover{filter:brightness(1.05)}
+.sx-chat-alt{background:transparent;border:1px solid var(--gx-line);color:var(--gx-navy)}
+.sx-chat-link{text-align:center;color:var(--ex-accent);font-size:.88rem;font-weight:600;text-decoration:none}
+@media (max-width:620px){.sx-chat-btn-open span{display:none}.sx-chat-btn-open{width:3rem;padding:0;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.sx-chat-panel{animation:none}}
+.sx-eyebrow .sx-open{margin-right:12px}
