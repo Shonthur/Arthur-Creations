@@ -1,6 +1,75 @@
 {
   "projects": [
     {
+      "slug": "calendar",
+      "title": "Herman Properties Calendar",
+      "category": "Calendars",
+      "year": "2026",
+      "tools": [
+        "Adobe Illustrator",
+        "AdobePhotoshop",
+        "Pinterest"
+      ],
+      "description": "Branded Calendar for Herman Propeties Real Estate Company.",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 1839,
+          "h": 2600,
+          "color": "#77695c"
+        },
+        {
+          "full": "p02.webp",
+          "thumb": "t02.webp",
+          "w": 1839,
+          "h": 2600,
+          "color": "#0d277d"
+        },
+        {
+          "full": "p03.webp",
+          "thumb": "t03.webp",
+          "w": 1839,
+          "h": 2600,
+          "color": "#0d277d"
+        },
+        {
+          "full": "p04.webp",
+          "thumb": "t04.webp",
+          "w": 1839,
+          "h": 2600,
+          "color": "#0d277d"
+        },
+        {
+          "full": "p05.webp",
+          "thumb": "t05.webp",
+          "w": 1839,
+          "h": 2600,
+          "color": "#0d277e"
+        },
+        {
+          "full": "p06.webp",
+          "thumb": "t06.webp",
+          "w": 1839,
+          "h": 2600,
+          "color": "#0d277d"
+        },
+        {
+          "full": "p07.webp",
+          "thumb": "t07.webp",
+          "w": 1839,
+          "h": 2600,
+          "color": "#0d277d"
+        }
+      ],
+      "hash": "mwyswx0y",
+      "build": 0,
+      "added": "2026-11-27",
+      "source": "browser"
+    },
+    {
       "slug": "final-flier",
       "title": "Herman Properties Flyer",
       "category": "Flyers",
