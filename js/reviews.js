@@ -93,6 +93,28 @@
     enabled: enabled, owners: OWNERS, shrink: shrink, makeCode: makeCode, card: card, esc: esc,
     onUser: function (cb) { return init().then(function (x) { return x.A.onAuthStateChanged(x.auth, cb); }); },
     signIn: function () { return init().then(function (x) { return x.A.signInWithPopup(x.auth, new x.A.GoogleAuthProvider()); }).then(function (r) { return r.user; }); },
+    /* client: Google sign-in only to borrow the profile picture. Returns a small JPEG data URL (or the Google picture link if the browser blocks copying it). */
+    googlePhoto: function () {
+      return init().then(function (x) {
+        return x.A.signInWithPopup(x.auth, new x.A.GoogleAuthProvider()).then(function (r) {
+          var u = r.user, url = u && u.photoURL;
+          if (!url) throw new Error('no-photo');
+          var big = url.replace(/=s\d+-c$/, '=s200-c');
+          return new Promise(function (res) {
+            var im = new Image(); im.crossOrigin = 'anonymous';
+            im.onload = function () {
+              try {
+                var c = document.createElement('canvas'); c.width = c.height = 160;
+                c.getContext('2d').drawImage(im, 0, 0, 160, 160);
+                res({ photo: c.toDataURL('image/jpeg', 0.82), name: u.displayName || '' });
+              } catch (e) { res({ photo: big, name: u.displayName || '' }); }
+            };
+            im.onerror = function () { res({ photo: big, name: u.displayName || '' }); };
+            im.src = big;
+          });
+        });
+      });
+    },
     signOut: function () { return init().then(function (x) { return x.A.signOut(x.auth); }); },
     /* client side: open with the private code */
     invite: function (code) { return one('invites', code); },

@@ -164,6 +164,7 @@ html[data-theme="dark"] .rv-step legend b{color:#111}
 .rv-photo{display:flex;align-items:center;gap:16px}
 .rv-av{width:72px;height:72px;font-size:1.5rem}
 .rv-photo .ex-hint{margin-top:8px}
+.rv-btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .rv-link{background:none;border:0;color:var(--ex-accent);font:inherit;font-weight:600;cursor:pointer;margin-left:8px}
 .rv-link[hidden]{display:none}
 #rv-form .ex-send{align-items:center}
