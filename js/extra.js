@@ -116,49 +116,65 @@
     Promise.all([fromWeb, fromFile]).then(function (a) {
       var list = a[0].concat(a[1]);
       if (!list.length) return;
-      tbox.innerHTML = list.map(function (t) {
-        var ini = (t.name || '?').split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join('').toUpperCase();
-        var av = t.photo ? '<img src="' + esc(t.photo) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : esc(ini);
-        return '<figure class="ex-t"><blockquote>' + esc(t.message) + '</blockquote><figcaption class="ex-who"><span class="ex-av">' + av + '</span><span><strong>' + esc(t.name) + '</strong><small>' + esc(t.role || '') + '</small></span></figcaption></figure>';
-      }).join('');
+      tbox.innerHTML = list.map(function (t) { return AVReviews.card(t); }).join('');
       var sec = $('#ex-testi'); if (sec) sec.hidden = false;
     });
   }
 
-  /* ---- review page: sign in with Google, then write the review ---- */
-  var rv = $('#rv-online');
-  if (rv && window.AVReviews && AVReviews.enabled()) {
-    rv.hidden = false;
-    var fb = $('#rv-fallback'); if (fb) fb.open = false;
+  /* ---- review page: private link (?c=code), stars, words, optional round photo ---- */
+  var app = $('#rv-app');
+  if (app) {
+    var code = (new URLSearchParams(location.search).get('c') || '').trim().toLowerCase();
     var say = function (t, bad) { var m = $('#rv-msg'); m.textContent = t; m.style.color = bad ? '#e11d48' : ''; };
-    var cur = null;
-    var setUser = function (u) {
-      cur = u;
-      $('#rv-step1').hidden = !!u; $('#rv-step2').hidden = !u;
-      if (!u) return;
-      var a = $('#rv-av'); a.textContent = '';
-      if (u.photoURL) { var im = new Image(); im.src = u.photoURL; im.alt = ''; im.referrerPolicy = 'no-referrer'; a.appendChild(im); }
-      else a.textContent = (u.displayName || '?')[0].toUpperCase();
-      $('#rv-name').textContent = u.displayName || u.email;
-      AVReviews.mine(u.uid).then(function (m) {
-        var done = !!m;
-        $('#rv-form').hidden = done; $('#rv-done').hidden = !done;
-        if (m) $('#rv-done').textContent = m.status === 'approved' ? 'Your review is published on the website. Thank you!' : 'Thank you! Your review was received. It shows on the website after I check it.';
-      }).catch(function () { /* first review */ });
-    };
-    $('#rv-signin').addEventListener('click', function () { AVReviews.signIn().catch(function (e) { say('Sign-in did not finish. Please allow pop-ups and try again.', true); }); });
-    $('#rv-signout').addEventListener('click', function () { AVReviews.signOut(); });
-    AVReviews.onUser(setUser);
-    $('#rv-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var f = e.target, text = f.elements.message.value.trim();
-      if (text.length < 10) { say('Please write a little more (at least 10 characters).', true); return; }
-      var btn = $('#rv-send'); btn.disabled = true; say('Sending...');
-      if (!cur) { btn.disabled = false; say('Please sign in first.', true); return; }
-      AVReviews.submit(cur, f.elements.role.value.trim(), text)
-        .then(function () { say(''); setUser(cur); })
-        .catch(function () { btn.disabled = false; say('Could not send your review. Please try again or use WhatsApp below.', true); });
-    });
+    var lock = function () { $('#rv-load').hidden = true; $('#rv-locked').hidden = false; };
+    if (!/^[a-z0-9]{12,40}$/.test(code) || !(window.AVReviews && AVReviews.enabled())) lock();
+    else {
+      var inv = null, photo = '';
+      var done = function (txt) { $('#rv-main').hidden = false; $('#rv-form').hidden = true; $('#rv-done').hidden = false; if (txt) $('#rv-donetext').textContent = txt; };
+      Promise.all([AVReviews.invite(code), AVReviews.review(code)]).then(function (a) {
+        inv = a[0]; $('#rv-load').hidden = true;
+        if (!inv) { lock(); return; }
+        $('#rv-main').hidden = false;
+        $('#rv-hello').textContent = 'Hello ' + inv.name.split(/\s+/)[0] + ', how did we do?';
+        $('#rv-proj').textContent = inv.project ? 'Project: ' + inv.project : '';
+        if (inv.image) { var b = $('#rv-banner'); b.src = inv.image; b.alt = inv.project || 'Finished work'; b.hidden = false; }
+        $('#rv-form').elements.name.value = inv.name;
+        if (a[1]) done(a[1].status === 'approved' ? 'Your review is already published on the website. Thank you!' : 'Your review was already received. It shows on the website after I check it. Thank you!');
+      }).catch(function () { lock(); });
+
+      var words = ['Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+      $$('input[name=rating]').forEach(function (r) { r.addEventListener('change', function () { $('#rv-ratetext').textContent = r.value + ' out of 5: ' + words[r.value - 1]; }); });
+      var ta = $('#rv-form').elements.message;
+      ta.addEventListener('input', function () { $('#rv-count').textContent = ta.value.length + ' / 800'; });
+
+      var agree = $('#rv-agree'), pick = $('#rv-pick'), file = $('#rv-file'), av = $('#rv-av'), note = $('#rv-photonote'), un = $('#rv-unpick');
+      var NOTE_OFF = 'Tick the box above to choose a photo. You can also skip this step.';
+      var NOTE_ON = 'Choose a clear photo of your face. It is cropped to a circle for you.';
+      agree.addEventListener('change', function () { pick.disabled = !agree.checked; note.textContent = agree.checked ? NOTE_ON : NOTE_OFF; });
+      pick.addEventListener('click', function () { file.click(); });
+      file.addEventListener('change', function () {
+        var f = file.files[0]; if (!f) return;
+        if (!/^image\//.test(f.type)) { note.textContent = 'Please choose an image file.'; return; }
+        AVReviews.shrink(f, 160, 0.82, true).then(function (d) {
+          photo = d; av.textContent = ''; var im = new Image(); im.src = d; im.alt = 'Your photo'; av.appendChild(im);
+          un.hidden = false; note.textContent = 'This is how your photo will appear. It is used only with your review, never for anything illegal or anything else.';
+        }).catch(function () { note.textContent = 'That photo could not be read. Please try another one.'; });
+      });
+      un.addEventListener('click', function () { photo = ''; file.value = ''; av.textContent = '?'; un.hidden = true; note.textContent = agree.checked ? NOTE_ON : NOTE_OFF; });
+
+      $('#rv-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var f = e.target, text = f.elements.message.value.trim(), rating = +((f.querySelector('input[name=rating]:checked') || {}).value || 0);
+        if (!rating) { say('Please tap a star to rate the work.', true); return; }
+        if (!f.elements.name.value.trim()) { say('Please type your name.', true); return; }
+        if (text.length < 10) { say('Please write a little more (at least 10 characters).', true); return; }
+        if (!$('#rv-ok').checked) { say('Please tick the box to allow publishing.', true); return; }
+        var btn = $('#rv-send'); btn.disabled = true; say('Sending...');
+        AVReviews.submit(code, { name: f.elements.name.value.trim(), role: f.elements.role.value.trim(), project: inv.project, rating: rating, message: text, photo: photo, image: inv.image || '' })
+          .then(function () { say(''); done(); window.scrollTo({ top: 0, behavior: 'smooth' }); })
+          .catch(function () { btn.disabled = false; say('Could not send your review. Please check your internet and try again, or message me on WhatsApp.', true); });
+      });
+    }
   }
 
   /* ---- before / after slider ---- */
