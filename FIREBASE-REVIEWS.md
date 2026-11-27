@@ -41,7 +41,9 @@ service cloud.firestore {
         && request.resource.data.message is string
         && request.resource.data.message.size() >= 10 && request.resource.data.message.size() <= 800
         && request.resource.data.photo is string && request.resource.data.photo.size() <= 60000
-        && (request.resource.data.photo == "" || request.resource.data.photo.matches('data:image/jpeg;base64,.*'))
+        && (request.resource.data.photo == ""
+            || request.resource.data.photo.matches('data:image/jpeg;base64,.*')
+            || request.resource.data.photo.matches('https://[a-z0-9-]+\\.googleusercontent\\.com/.*'))
         && request.resource.data.image is string && request.resource.data.image.size() <= 450000;
       allow update, delete: if isOwner();
     }

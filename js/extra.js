@@ -148,9 +148,10 @@
       ta.addEventListener('input', function () { $('#rv-count').textContent = ta.value.length + ' / 800'; });
 
       var agree = $('#rv-agree'), pick = $('#rv-pick'), file = $('#rv-file'), av = $('#rv-av'), note = $('#rv-photonote'), un = $('#rv-unpick');
-      var NOTE_OFF = 'Tick the box above to choose a photo. You can also skip this step.';
-      var NOTE_ON = 'Choose a clear photo of your face. It is cropped to a circle for you.';
-      agree.addEventListener('change', function () { pick.disabled = !agree.checked; note.textContent = agree.checked ? NOTE_ON : NOTE_OFF; });
+      var NOTE_OFF = 'Tick the box above to add a photo. You can also skip this step.';
+      var NOTE_ON = 'Use your Google picture, or upload a clear photo of your face. It is cropped to a circle for you.';
+      var gbtn = $('#rv-google');
+      agree.addEventListener('change', function () { pick.disabled = gbtn.disabled = !agree.checked; note.textContent = agree.checked ? NOTE_ON : NOTE_OFF; });
       pick.addEventListener('click', function () { file.click(); });
       file.addEventListener('change', function () {
         var f = file.files[0]; if (!f) return;
@@ -159,6 +160,13 @@
           photo = d; av.textContent = ''; var im = new Image(); im.src = d; im.alt = 'Your photo'; av.appendChild(im);
           un.hidden = false; note.textContent = 'This is how your photo will appear. It is used only with your review, never for anything illegal or anything else.';
         }).catch(function () { note.textContent = 'That photo could not be read. Please try another one.'; });
+      });
+      gbtn.addEventListener('click', function () {
+        note.textContent = 'Opening Google...';
+        AVReviews.googlePhoto().then(function (r) {
+          photo = r.photo; av.textContent = ''; var im = new Image(); im.src = photo; im.alt = 'Your photo'; im.referrerPolicy = 'no-referrer'; av.appendChild(im);
+          un.hidden = false; note.textContent = 'Your Google picture will be shown like this. It is used only with your review, never for anything illegal or anything else. Google gives me only your name and picture, never your password.';
+        }).catch(function () { note.textContent = 'Google sign-in did not finish. Please try again, or upload a photo instead.'; });
       });
       un.addEventListener('click', function () { photo = ''; file.value = ''; av.textContent = '?'; un.hidden = true; note.textContent = agree.checked ? NOTE_ON : NOTE_OFF; });
 
