@@ -1,6 +1,32 @@
 {
   "projects": [
     {
+      "slug": "mary",
+      "title": "Street Parade Banner",
+      "category": "Banners",
+      "year": "2026",
+      "tools": [
+        "Adobe illustrator",
+        "Adobe Photoshop"
+      ],
+      "description": "Detailed Banner design for a Band/Music group.",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 2600,
+          "h": 1339,
+          "color": "#784e80"
+        }
+      ],
+      "hash": "mwyttnxi",
+      "build": 0,
+      "added": "2026-11-27",
+      "source": "browser"
+    },
+    {
       "slug": "letterhead",
       "title": "Herman Properties Letter head",
       "category": "Design",
