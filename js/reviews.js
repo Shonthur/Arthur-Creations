@@ -4,7 +4,7 @@
   'use strict';
   var V = '10.12.2';
   var BASE = 'https://www.gstatic.com/firebasejs/' + V + '/';
-  var OWNER = 'arthurshon@gmail.com';
+  var OWNERS = ['arthurshon@gmail.com', 'www.arthurshon@gmail.com'];
   var cfg = window.AV_FIREBASE;
   var ready = null;
 
@@ -90,7 +90,7 @@
   }
 
   window.AVReviews = {
-    enabled: enabled, owner: OWNER, shrink: shrink, makeCode: makeCode, card: card, esc: esc,
+    enabled: enabled, owners: OWNERS, shrink: shrink, makeCode: makeCode, card: card, esc: esc,
     onUser: function (cb) { return init().then(function (x) { return x.A.onAuthStateChanged(x.auth, cb); }); },
     signIn: function () { return init().then(function (x) { return x.A.signInWithPopup(x.auth, new x.A.GoogleAuthProvider()); }).then(function (r) { return r.user; }); },
     signOut: function () { return init().then(function (x) { return x.A.signOut(x.auth); }); },
