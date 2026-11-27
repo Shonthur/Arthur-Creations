@@ -182,14 +182,14 @@
     },
     {
       "slug": "business-card",
-      "title": "Epic Foods Business card",
+      "title": "Herman Properties Business card",
       "category": "Business Card",
-      "year": "",
+      "year": "2026",
       "tools": [
         "Adobe Illustrator",
-        "Adobe Photoshop"
+        "AdobePhotoshop"
       ],
-      "description": "Professional Business cars for restaurant business.",
+      "description": "Herman properties business cards..",
       "order": 0,
       "pdf": null,
       "pages": [
@@ -201,7 +201,7 @@
           "color": "#ffffff"
         }
       ],
-      "hash": "mwgvkd3q",
+      "hash": "mwyt7fh2",
       "build": 0,
       "added": "2026-11-14",
       "source": "browser"
