@@ -82,7 +82,7 @@
   });
 
   R.onUser(function (u) {
-    var owner = u && u.email && u.email.toLowerCase() === R.owner;
+    var owner = u && u.email && R.owners.indexOf(u.email.toLowerCase()) > -1;
     $('mr-signin').hidden = !!u; $('mr-signout').hidden = !u;
     $('mr-list').hidden = !owner;
     if (u && !owner) msg('This page is only for the owner. You are signed in as ' + u.email + '.', true); else msg('');

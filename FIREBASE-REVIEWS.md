@@ -19,7 +19,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function isOwner() {
       return request.auth != null
-        && request.auth.token.email == "arthurshon@gmail.com"
+        && request.auth.token.email in ["arthurshon@gmail.com", "www.arthurshon@gmail.com"]
         && request.auth.token.email_verified == true;
     }
     // private links: only you can create or list them; a client reads only the one they hold
