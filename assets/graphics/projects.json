@@ -1,6 +1,41 @@
 {
   "projects": [
     {
+      "slug": "herman-properties-uganda-brochure-v2",
+      "title": "Herman Properties brocure",
+      "category": "Brochures",
+      "year": "2026",
+      "tools": [
+        "Adobe Illustrator",
+        "AdobePhotoshop",
+        "Adobe Indesign",
+        "Pinterest"
+      ],
+      "description": "Branded brocure for Herman Propeties Real Estate Company.",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 2600,
+          "h": 1838,
+          "color": "#f8fafc"
+        },
+        {
+          "full": "p02.webp",
+          "thumb": "t02.webp",
+          "w": 2600,
+          "h": 1838,
+          "color": "#937344"
+        }
+      ],
+      "hash": "mwyt1rxs",
+      "build": 0,
+      "added": "2026-11-27",
+      "source": "browser"
+    },
+    {
       "slug": "calendar",
       "title": "Herman Properties Calendar",
       "category": "Calendars",
