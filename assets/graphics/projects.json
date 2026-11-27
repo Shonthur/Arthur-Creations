@@ -1,6 +1,31 @@
 {
   "projects": [
     {
+      "slug": "letterhead",
+      "title": "Herman Properties Letter head",
+      "category": "Design",
+      "year": "",
+      "tools": [
+        "Adobe Illustrator"
+      ],
+      "description": "Herman Letter head.",
+      "order": 0,
+      "pdf": null,
+      "pages": [
+        {
+          "full": "p01.webp",
+          "thumb": "t01.webp",
+          "w": 1838,
+          "h": 2600,
+          "color": "#ffffff"
+        }
+      ],
+      "hash": "mwytergd",
+      "build": 0,
+      "added": "2026-11-27",
+      "source": "browser"
+    },
+    {
       "slug": "herman-properties-uganda-brochure-v2",
       "title": "Herman Properties brocure",
       "category": "Brochures",
