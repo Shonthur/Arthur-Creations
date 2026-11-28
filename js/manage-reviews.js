@@ -62,6 +62,25 @@
   $('mr-in').hidden = false;
   $('mr-signin').addEventListener('click', function () { R.signIn().catch(function (e) { msg('Sign-in failed: ' + e.message, true); }); });
   $('mr-signout').addEventListener('click', function () { R.signOut(); });
+  /* pick work already on the Graphics page: fills the project name and picture */
+  var workImg = '', workSel = $('mr-work');
+  fetch('../assets/graphics/projects.json').then(function (r) { return r.json(); }).then(function (d) {
+    (d.projects || []).forEach(function (p) {
+      if (!p.pages || !p.pages.length) return;
+      var o = document.createElement('option'); o.value = p.slug + '|' + p.pages[0].full; o.textContent = p.title + ' (' + p.category + ')'; o.setAttribute('data-title', p.title);
+      workSel.appendChild(o);
+    });
+  }).catch(function () {});
+  workSel.addEventListener('change', function () {
+    var o = workSel.options[workSel.selectedIndex], note = $('mr-worknote'); workImg = '';
+    if (!workSel.value) { note.textContent = ''; return; }
+    var f = $('mr-make').elements.project; f.value = o.getAttribute('data-title');
+    var parts = workSel.value.split('|'); note.textContent = 'Loading the picture...';
+    fetch('../assets/graphics/' + parts[0] + '/' + parts[1]).then(function (r) { return r.blob(); })
+      .then(function (b) { return R.shrink(b, 1000, 0.78, false); })
+      .then(function (d) { workImg = d; note.textContent = 'This work\'s picture will show on the review.'; })
+      .catch(function () { note.textContent = 'Could not load the picture. You can upload one below.'; });
+  });
   $('mr-copy').addEventListener('click', function () { copy($('mr-link').value); msg('Link copied.'); });
 
   $('mr-make').addEventListener('submit', function (e) {
@@ -70,10 +89,10 @@
     if (!name || !project) { msg('Please type the client name and the project.', true); return; }
     var btn = $('mr-create'); btn.disabled = true; msg('Creating...');
     var file = f.elements.image.files[0];
-    (file ? R.shrink(file, 1000, 0.78, false) : Promise.resolve(''))
+    (file ? R.shrink(file, 1000, 0.78, false) : Promise.resolve(workImg))
       .then(function (img) { return R.createInvite({ name: name, project: project, image: img }); })
       .then(function (code) {
-        var link = linkFor(code); f.reset();
+        var link = linkFor(code); f.reset(); workImg = ''; $('mr-worknote').textContent = '';
         $('mr-link').value = link; $('mr-result').hidden = false;
         var text = 'Hello ' + name + ', thank you for choosing Avalon Corporate Solutions for ' + project + '. Could you please share a short review? It takes about one minute: ' + link;
         $('mr-wa').href = 'https://wa.me/?text=' + encodeURIComponent(text);
