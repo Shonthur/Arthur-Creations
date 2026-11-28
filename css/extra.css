@@ -180,3 +180,11 @@ html[data-theme="dark"] .rv-step legend b{color:#111}
 .rv-inv>span{flex:1;min-width:200px}.rv-inv small{color:var(--gx-muted)}
 @media(max-width:560px){.rv-photo{align-items:flex-start}.rv-stars label{font-size:2.2rem}}
 .ex-testi{grid-template-columns:repeat(auto-fit,minmax(300px,480px));justify-content:center}
+
+/* design prices and combo offers */
+.cb-prods{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.cb-prod{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--ex-surface);border:1px solid var(--gx-line);border-radius:12px;padding:14px 16px}
+.cb-prod span{font-weight:600;color:var(--gx-navy)}.cb-prod b{color:var(--ex-accent);white-space:nowrap}
+.cb-pct{display:inline-block;background:var(--ex-accent);color:#fff;font-weight:800;font-size:.8rem;letter-spacing:.04em;border-radius:999px;padding:4px 12px;margin-bottom:10px}
+html[data-theme="dark"] .cb-pct{color:#111}
+.cb-offers .sx-card h3{margin:0 0 6px}.cb-offers .sx-card p{margin:0;color:var(--gx-muted)}

@@ -39,9 +39,10 @@
 <div id="mr-list" hidden>
 <h2 style="margin:28px 0 12px">1. Create a review link</h2>
 <form class="ex-form rv-make" id="mr-make" novalidate>
+<label class="ex-field ex-wide"><span>Work already on your website (optional)</span><select name="work" id="mr-work"><option value="">Choose from your Graphics page...</option></select><em class="rv-count" id="mr-worknote" style="text-align:left"></em></label>
 <label class="ex-field"><span>Client name *</span><input type="text" name="name" required maxlength="80" placeholder="For example: Namagembe Rose"></label>
 <label class="ex-field"><span>Project *</span><input type="text" name="project" required maxlength="100" placeholder="For example: Kasimba Clan welcome banner"></label>
-<label class="ex-field ex-wide"><span>Photo of the finished work (optional, shown on the review)</span><input type="file" name="image" accept="image/*"></label>
+<label class="ex-field ex-wide"><span>Photo of the finished work (optional; a picked work above is used if you add none)</span><input type="file" name="image" accept="image/*"></label>
 <div class="ex-send ex-wide"><button class="sx-btn" type="submit" id="mr-create">Create link</button></div>
 <div class="rv-result ex-wide" id="mr-result" hidden><label class="ex-field"><span>Send this private link to the client</span><input type="text" id="mr-link" readonly></label>
 <div class="ex-send"><button class="sx-btn sx-btn-sm" type="button" id="mr-copy">Copy link</button><a class="sx-btn sx-btn-sm sx-btn-ghost" id="mr-wa" target="_blank" rel="noopener" href="#">Send on WhatsApp</a></div></div>
